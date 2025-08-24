@@ -1,0 +1,21 @@
+/* Projects Page Styles */
+.project-item {
+    font-size: 0.9rem;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.project-item.fade-in {
+    opacity: 1;
+}
+
+.project-item img {
+    box-shadow: 0px 0px 10px 5px dimgray;
+    -webkit-transition: all .8s ease-in-out;
+    transition: all .8s ease-in-out;
+}
+
+.project-item img:hover {
+    -webkit-transform: scale(1.01);
+    transform: scale(1.01);
+}

@@ -1,0 +1,40 @@
+/* Navigation Styles */
+.navbar {
+    font-family: 'Great Vibes', cursive;
+    padding-top: 3%;
+    padding-bottom: 1%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 1000;
+}
+
+.navbar-nav a {
+    font-size: 1.5rem;
+}
+
+.navbar-nav li {
+    margin: 5px 20px;
+}
+
+/* Desktop navigation effects */
+@media (min-width: 992px) {
+    .navbar {
+        background-color: transparent !important;
+    }
+    
+    .navbar-nav .underline {
+        height: 2px;
+        background-color: transparent;
+        width: 0%;
+        transition: width 0.2s, background-color 0.5s;
+        margin: 0 auto;
+    }
+    
+    .navbar-nav li.active .underline,
+    .navbar-nav li:hover .underline {
+        background-color: darkgoldenrod;
+        width: 100%;
+    }
+}

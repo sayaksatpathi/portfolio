@@ -1,0 +1,93 @@
+/* Personal Page Styles */
+.quote {
+    padding: 10%;
+}
+
+/* Enhanced styling for personal page */
+.section-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.section-icon {
+    font-size: 2rem;
+    color: darkgoldenrod;
+    margin-right: 15px;
+}
+
+.tech-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, darkgoldenrod, #b8860b);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 25px;
+    margin: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.achievement-item {
+    margin: 15px 0;
+    padding: 10px 0;
+    border-left: 4px solid darkgoldenrod;
+    padding-left: 20px;
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 30px;
+    margin: 20px 0;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    background: darkgoldenrod;
+    border-radius: 50%;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: darkgoldenrod;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: none;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+    background: #b8860b;
+    transform: scale(1.1);
+}
+
+.personal-quote {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #666;
+    text-align: center;
+    margin: 30px 0;
+    padding: 20px;
+    border-left: 4px solid darkgoldenrod;
+    background: rgba(184, 134, 11, 0.1);
+}

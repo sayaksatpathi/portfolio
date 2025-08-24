@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes|Josefin+Sans|Playfair+Display+SC&display=swap');
+
+/* Global Styles */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Josefin sans', sans-serif;
+}
+
+.content-wrapper {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
+    padding: 20px 0;
+    text-align: center;
+    background-color: transparent;
+}
+
+.top-bound {
+    margin-top: 30% !important;
+}
+
+a {
+    color: #343a40;
+    transition: all 0.4s;
+}
+
+a:hover {
+    transition: all 0.4s;
+    color: darkgoldenrod !important;
+    text-decoration: none;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .top-bound {
+        margin-top: 10% !important;
+    }
+}
