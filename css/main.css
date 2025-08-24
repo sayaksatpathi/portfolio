@@ -37,6 +37,18 @@ a:hover {
     text-decoration: none;
 }
 
+/* Fade-in animation for page transitions */
+body.fade-in {
+    opacity: 0;
+    animation: fadeInBody 1.5s ease forwards;
+}
+
+@keyframes fadeInBody {
+    to {
+        opacity: 1;
+    }
+}
+
 /* Responsive adjustments */
 @media (min-width: 768px) {
     .top-bound {
