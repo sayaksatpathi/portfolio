@@ -1,2 +1,28 @@
 [build]
   publish = "."
+
+# ═══ SECURITY HEADERS ═══
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Prevent clickjacking — no one can embed your site in an iframe
+    X-Frame-Options = "DENY"
+
+    # Prevent MIME-type sniffing attacks
+    X-Content-Type-Options = "nosniff"
+
+    # Force HTTPS for 1 year (HSTS preload)
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+    # Control referrer info sent to other sites
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # Disable unnecessary browser features
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+
+    # Content Security Policy — only allow trusted sources
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdn.tailwindcss.com https://unpkg.com https://www.youtube.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://github.com https://avatars.githubusercontent.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; connect-src 'self' https://github-contributions-api.jogruber.de https://api.github.com https://www.google-analytics.com https://region1.google-analytics.com; object-src 'none'; base-uri 'self'; form-action 'self';"
+
+    # Prevent cross-origin attacks
+    Cross-Origin-Opener-Policy = "same-origin-allow-popups"
+    Cross-Origin-Resource-Policy = "cross-origin"
