@@ -976,8 +976,10 @@
                 const contribMap = {};
                 contributions.forEach(d => { contribMap[d.date] = d; });
 
+                const today = new Date(); today.setHours(0,0,0,0);
+                // Always render full year Jan 1 → Dec 31
                 const startDate = new Date(`${year}-01-01`);
-                const endDate = new Date(); endDate.setHours(0,0,0,0);
+                const endDate = new Date(`${year}-12-31`);
                 const firstSunday = new Date(startDate);
                 firstSunday.setDate(firstSunday.getDate() - firstSunday.getDay());
 
@@ -987,17 +989,20 @@
                     const week = [];
                     for (let d = 0; d < 7; d++) {
                         const ds = cur.toISOString().split('T')[0];
-                        week.push((cur >= startDate && cur <= endDate) ? (contribMap[ds] || {date:ds,count:0,level:0}) : null);
+                        const inYear = cur >= startDate && cur <= endDate;
+                        const isFuture = cur > today;
+                        week.push(inYear ? { date: ds, count: contribMap[ds]?.count || 0, level: contribMap[ds]?.level || 0, future: isFuture } : null);
                         cur.setDate(cur.getDate() + 1);
                     }
                     weeks.push(week);
                 }
 
                 const COLORS = ['#1e293b','#14532d','#166534','#16a34a','#4ade80'];
+                const FUTURE_COLOR = '#0f172a';
                 const S = 11, G = 2, LP = 30, TP = 22;
                 const W = LP + weeks.length * (S + G);
                 const H = TP + 7 * (S + G);
-                let svg = `<svg width="100%" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="display:block">`;
+                let svg = `<svg width="100%" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="display:block;min-width:600px">`;
 
                 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
                 let lastMonth = -1;
@@ -1020,7 +1025,9 @@
                     week.forEach((day, di) => {
                         if (!day) return;
                         const x = LP + wi*(S+G), y = TP + di*(S+G);
-                        svg += `<rect x="${x}" y="${y}" width="${S}" height="${S}" rx="2" fill="${COLORS[Math.min(day.level,4)]}"><title>${day.date}: ${day.count} contributions</title></rect>`;
+                        const fill = day.future ? FUTURE_COLOR : COLORS[Math.min(day.level,4)];
+                        const title = day.future ? `${day.date}: upcoming` : `${day.date}: ${day.count} contributions`;
+                        svg += `<rect x="${x}" y="${y}" width="${S}" height="${S}" rx="2" fill="${fill}" opacity="${day.future ? '0.4' : '1'}"><title>${title}</title></rect>`;
                     });
                 });
 
