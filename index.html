@@ -566,9 +566,10 @@
                                             <p class="text-xs sm:text-sm text-gray-400">2026 contributions</p>
                                         </div>
                                     </div>
-                                    <div class="bg-gray-800/50 rounded-xl p-3 sm:p-4 mb-4">
-                                        <img src="https://ghchart.rshah.org/4ade80/sayaksatpathi"
-                                            alt="GitHub Contribution Chart" class="w-full h-auto rounded-lg" />
+                                    <div class="bg-gray-800/50 rounded-xl p-3 sm:p-4 mb-4 overflow-x-auto" id="github-chart-wrapper">
+                                        <div id="github-chart-container">
+                                            <div class="text-gray-500 text-xs text-center py-6 animate-pulse">Loading live contributions from GitHub...</div>
+                                        </div>
                                     </div>
                                     <div class="flex items-center justify-between text-sm">
                                         <span class="text-gray-400">Total Contributions</span>
@@ -959,15 +960,78 @@
     </div>
     <script src="js/script.js"></script>
     <script>
-        // Auto-fetch live GitHub contribution count for current year
-        const year = new Date().getFullYear();
-        fetch(`https://github-contributions-api.jogruber.de/v4/sayaksatpathi?y=${year}`)
-            .then(r => r.json())
-            .then(data => {
-                const count = data?.total?.[year];
-                const el = document.getElementById('gh-commit-count');
-                if (el && count !== undefined) el.textContent = count + '+ commits';
-            }).catch(() => {});
+        async function renderGitHubChart() {
+            const container = document.getElementById('github-chart-container');
+            const countEl = document.getElementById('gh-commit-count');
+            if (!container) return;
+            try {
+                const year = new Date().getFullYear();
+                const res = await fetch(`https://github-contributions-api.jogruber.de/v4/sayaksatpathi?y=${year}`);
+                const data = await res.json();
+                const contributions = data.contributions || [];
+                const total = data.total?.[year] || 0;
+                if (countEl) countEl.textContent = total + '+ commits';
+                if (!contributions.length) throw new Error('no data');
+
+                const contribMap = {};
+                contributions.forEach(d => { contribMap[d.date] = d; });
+
+                const startDate = new Date(`${year}-01-01`);
+                const endDate = new Date(); endDate.setHours(0,0,0,0);
+                const firstSunday = new Date(startDate);
+                firstSunday.setDate(firstSunday.getDate() - firstSunday.getDay());
+
+                const weeks = [];
+                const cur = new Date(firstSunday);
+                while (cur <= endDate) {
+                    const week = [];
+                    for (let d = 0; d < 7; d++) {
+                        const ds = cur.toISOString().split('T')[0];
+                        week.push((cur >= startDate && cur <= endDate) ? (contribMap[ds] || {date:ds,count:0,level:0}) : null);
+                        cur.setDate(cur.getDate() + 1);
+                    }
+                    weeks.push(week);
+                }
+
+                const COLORS = ['#1e293b','#14532d','#166534','#16a34a','#4ade80'];
+                const S = 11, G = 2, LP = 30, TP = 22;
+                const W = LP + weeks.length * (S + G);
+                const H = TP + 7 * (S + G);
+                let svg = `<svg width="100%" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="display:block">`;
+
+                const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                let lastMonth = -1;
+                weeks.forEach((week, wi) => {
+                    const first = week.find(d => d !== null);
+                    if (first) {
+                        const m = new Date(first.date).getMonth();
+                        if (m !== lastMonth) {
+                            svg += `<text x="${LP + wi*(S+G)}" y="14" fill="#9ca3af" font-size="9" font-family="Inter,sans-serif">${MONTHS[m]}</text>`;
+                            lastMonth = m;
+                        }
+                    }
+                });
+
+                [['Mon',1],['Wed',3],['Fri',5]].forEach(([lbl,row]) => {
+                    svg += `<text x="0" y="${TP + row*(S+G) + S}" fill="#6b7280" font-size="8" font-family="Inter,sans-serif">${lbl}</text>`;
+                });
+
+                weeks.forEach((week, wi) => {
+                    week.forEach((day, di) => {
+                        if (!day) return;
+                        const x = LP + wi*(S+G), y = TP + di*(S+G);
+                        svg += `<rect x="${x}" y="${y}" width="${S}" height="${S}" rx="2" fill="${COLORS[Math.min(day.level,4)]}"><title>${day.date}: ${day.count} contributions</title></rect>`;
+                    });
+                });
+
+                svg += '</svg>';
+                container.innerHTML = svg;
+            } catch(e) {
+                container.innerHTML = `<img src="https://ghchart.rshah.org/4ade80/sayaksatpathi" class="w-full h-auto rounded-lg" />`;
+                if (countEl) countEl.textContent = '88+ commits';
+            }
+        }
+        renderGitHubChart();
     </script>
 </body>
 
