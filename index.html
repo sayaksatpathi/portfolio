@@ -960,6 +960,14 @@
     </div>
     <script src="js/script.js"></script>
     <script>
+        // Register Service Worker for offline support & always-on caching
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            });
+        }
+    </script>
+    <script>
         async function renderGitHubChart() {
             const container = document.getElementById('github-chart-container');
             const countEl = document.getElementById('gh-commit-count');
