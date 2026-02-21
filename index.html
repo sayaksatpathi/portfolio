@@ -563,16 +563,16 @@
                                         </div>
                                         <div>
                                             <h3 class="text-lg sm:text-xl font-bold text-white">GitHub Activity</h3>
-                                            <p class="text-xs sm:text-sm text-gray-400">365 days of code</p>
+                                            <p class="text-xs sm:text-sm text-gray-400">2026 contributions</p>
                                         </div>
                                     </div>
                                     <div class="bg-gray-800/50 rounded-xl p-3 sm:p-4 mb-4">
-                                        <img src="https://ghchart.rshah.org/sayaksatpathi"
+                                        <img src="https://ghchart.rshah.org/4ade80/sayaksatpathi"
                                             alt="GitHub Contribution Chart" class="w-full h-auto rounded-lg" />
                                     </div>
                                     <div class="flex items-center justify-between text-sm">
                                         <span class="text-gray-400">Total Contributions</span>
-                                        <span class="text-green-400 font-semibold">500+ commits</span>
+                                        <span class="text-green-400 font-semibold" id="gh-commit-count">88+ commits</span>
                                     </div>
                                 </div>
 
@@ -958,6 +958,17 @@
         </div>
     </div>
     <script src="js/script.js"></script>
+    <script>
+        // Auto-fetch live GitHub contribution count for current year
+        const year = new Date().getFullYear();
+        fetch(`https://github-contributions-api.jogruber.de/v4/sayaksatpathi?y=${year}`)
+            .then(r => r.json())
+            .then(data => {
+                const count = data?.total?.[year];
+                const el = document.getElementById('gh-commit-count');
+                if (el && count !== undefined) el.textContent = count + '+ commits';
+            }).catch(() => {});
+    </script>
 </body>
 
 </html>
