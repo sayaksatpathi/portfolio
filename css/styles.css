@@ -515,4 +515,38 @@
             .marquee-content span {
                 font-size: 2.5rem !important;
             }
+
+            /* FIX 8: Overlay menu — reduce padding & nav font size on small phones */
+            #overlay-menu {
+                padding: 1.25rem;
+            }
+            #overlay-menu nav a {
+                font-size: 2.25rem !important;
+            }
+
+            /* FIX 9: Preloader bottom bar — prevent wrap on narrow screens */
+            .preloader-bottom-bar {
+                font-size: 0.7rem;
+                bottom: 1rem;
+                left: 1rem;
+                right: 1rem;
+            }
+            .loading-bar {
+                width: 70px;
+            }
+
+            /* FIX 10: Hero stats grid — tighten text so 3 columns fit comfortably */
+            .hero-stats-text {
+                font-size: 0.6rem !important;
+            }
+
+            /* FIX 11: GitHub chart wrapper — tighter top padding on mobile */
+            #github-chart-wrapper {
+                padding: 0.5rem !important;
+            }
+
+            /* FIX 12: Footer time columns — stack cleanly */
+            footer .grid {
+                gap: 1.5rem;
+            }
         }
