@@ -224,13 +224,13 @@ if (flicker1 && flicker2) {
     let showingBreaking = true;
     setInterval(() => {
         if (showingBreaking) {
-            // Fade out "breaking" fully, then fade in "fixing"
-            flicker1.classList.add('opacity-0');
-            setTimeout(() => flicker2.classList.remove('opacity-0'), 550);
+            // Fade out "breaking", wait for full fade, then fade in "fixing"
+            flicker1.style.opacity = '0';
+            setTimeout(() => { flicker2.style.opacity = '1'; }, 550);
         } else {
-            // Fade out "fixing" fully, then fade in "breaking"
-            flicker2.classList.add('opacity-0');
-            setTimeout(() => flicker1.classList.remove('opacity-0'), 550);
+            // Fade out "fixing", wait for full fade, then fade in "breaking"
+            flicker2.style.opacity = '0';
+            setTimeout(() => { flicker1.style.opacity = '1'; }, 550);
         }
         showingBreaking = !showingBreaking;
     }, 2500);
