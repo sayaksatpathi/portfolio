@@ -388,12 +388,14 @@ window.addEventListener('load', () => {
         revealObserver.observe(el);
     });
 
-    // Fallback: force-show all reveal elements after 4s in case observer misses them
+    // Fallback: force-show all reveal elements after 100ms in case observer misses them
+    // (short timeout ensures no blank-space flash; observer still handles scroll-in animation
+    //  for elements already in the viewport via the post-preloader rAF check above)
     setTimeout(() => {
         document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
             el.classList.add('visible');
         });
-    }, 4000);
+    }, 100);
 
     initialize3dCards('#projects-section .project-card');
 
@@ -421,6 +423,20 @@ window.addEventListener('load', () => {
         if (preloader) preloader.style.opacity = '0';
         if (body) body.classList.remove('overflow-hidden');
         if (typewriterElement) setupTypewriter();
+
+        // Force-reveal any .reveal elements already in the viewport
+        // (hash navigation is blocked during overflow:hidden, so observer
+        //  may not have fired for the target section)
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        el.classList.add('visible');
+                    }
+                });
+            });
+        });
     }, 3500);
 
     setTimeout(() => {
