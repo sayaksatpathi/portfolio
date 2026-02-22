@@ -221,10 +221,19 @@ const flicker1 = document.getElementById('text-flicker-1');
 const flicker2 = document.getElementById('text-flicker-2');
 
 if (flicker1 && flicker2) {
+    let showingBreaking = true;
     setInterval(() => {
-        flicker1.classList.toggle('opacity-0');
-        flicker2.classList.toggle('opacity-0');
-    }, 2000);
+        if (showingBreaking) {
+            // Fade out "breaking", then fade in "fixing"
+            flicker1.classList.add('opacity-0');
+            setTimeout(() => flicker2.classList.remove('opacity-0'), 320);
+        } else {
+            // Fade out "fixing", then fade in "breaking"
+            flicker2.classList.add('opacity-0');
+            setTimeout(() => flicker1.classList.remove('opacity-0'), 320);
+        }
+        showingBreaking = !showingBreaking;
+    }, 2500);
 }
 
 // 3D Card Effect
