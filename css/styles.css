@@ -212,6 +212,16 @@
             background-color: #4CAF50;
         }
         
+        /* Hero parallax spacer — 100vh on mobile (no parallax), 200vh on md+ (enables parallax) */
+        .hero-parallax-spacer {
+            height: 100vh;
+        }
+        @media (min-width: 768px) {
+            .hero-parallax-spacer {
+                height: 200vh;
+            }
+        }
+
         /* Custom Cursor */
         #cursor {
             position: fixed;
@@ -225,6 +235,10 @@
             transform: translate(-50%, -50%);
             transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.5s ease;
             z-index: 9999;
+        }
+        /* Hide custom cursor on touch devices */
+        @media (hover: none) and (pointer: coarse) {
+            #cursor { display: none; }
         }
         #cursor.grow {
             width: 64px;

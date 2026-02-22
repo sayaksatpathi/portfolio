@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1280">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- ═══ PRIMARY SEO ═══ -->
     <title>Sayak Satpathi | AI & ML Student · Full Stack Developer · India</title>
@@ -206,7 +206,7 @@
     </header>
 
     <div class="relative">
-        <div class="hero-parallax-spacer" style="height: 200vh;">
+        <div class="hero-parallax-spacer">
             <section id="hero-section"
                 class="section bg-light px-4 sm:px-6 lg:px-8 sticky top-0 h-screen relative overflow-hidden">
                 <!-- Background Elements -->
@@ -427,10 +427,10 @@
                 <section class="bg-dark py-12 section-compact">
                     <div class="marquee">
                         <div class="marquee-content">
-                            <span class="text-6xl md:text-8xl font-black mx-8">Full Stack Developer ✨</span>
-                            <span class="text-6xl md:text-8xl font-black mx-8">Creative Coder ✨</span>
-                            <span class="text-6xl md:text-8xl font-black mx-8">Full Stack Developer ✨</span>
-                            <span class="text-6xl md:text-8xl font-black mx-8">Creative Coder ✨</span>
+                            <span class="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black mx-8">Full Stack Developer ✨</span>
+                            <span class="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black mx-8">Creative Coder ✨</span>
+                            <span class="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black mx-8">Full Stack Developer ✨</span>
+                            <span class="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black mx-8">Creative Coder ✨</span>
                         </div>
                     </div>
                 </section>
@@ -966,7 +966,7 @@
                 <i data-lucide="x"></i>
             </button>
         </div>
-        <nav class="flex flex-col text-5xl font-black space-y-4 relative z-10">
+        <nav class="flex flex-col text-4xl sm:text-5xl font-black space-y-4 relative z-10">
             <a href="#hero-section" class="overlay-link">Home</a>
             <a href="#skills-section" class="overlay-link">Skills</a>
             <a href="#education-section" class="overlay-link">Education</a>
@@ -993,7 +993,7 @@
         // Register Service Worker for offline support & always-on caching
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').catch(() => {});
+                navigator.serviceWorker.register('./sw.js').catch(() => {});
             });
         }
     </script>
@@ -1040,7 +1040,7 @@
                 const S = 11, G = 2, LP = 30, TP = 22;
                 const W = LP + weeks.length * (S + G);
                 const H = TP + 7 * (S + G);
-                let svg = `<svg width="100%" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="display:block;min-width:600px">`;
+                let svg = `<svg width="100%" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="display:block;min-width:420px">`;
 
                 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
                 let lastMonth = -1;
