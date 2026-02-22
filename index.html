@@ -144,6 +144,19 @@
 <body class="bg-light overflow-hidden">
     <div id="cursor"></div>
 
+    <!-- Safety net: always show page within 7s even if external scripts fail on mobile -->
+    <script>
+        (function() {
+            var maxWait = setTimeout(function() {
+                var p = document.getElementById('preloader');
+                var b = document.body;
+                if (p) { p.style.opacity = '0'; p.style.pointerEvents = 'none'; setTimeout(function(){ p.style.display = 'none'; }, 500); }
+                if (b) b.classList.remove('overflow-hidden');
+            }, 7000);
+            window.__clearPreloaderFallback = function() { clearTimeout(maxWait); };
+        })();
+    </script>
+
     <div id="preloader">
         <div class="preloader-text-container">
             <span class="preloader-text glitch-layer">Sayak Satpathi 2026</span>

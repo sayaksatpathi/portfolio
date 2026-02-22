@@ -1,4 +1,5 @@
-lucide.createIcons();
+// Safely initialize Lucide icons — if CDN fails on mobile, script still runs
+try { lucide.createIcons(); } catch(e) { console.warn('Lucide icons unavailable:', e); }
 
 // Overlay Menu Toggle
 const menuBtn = document.getElementById('menu-btn');
@@ -381,6 +382,7 @@ window.addEventListener('load', () => {
 
     // Hide preloader and reveal site
     setTimeout(() => {
+        if (window.__clearPreloaderFallback) window.__clearPreloaderFallback();
         if (preloader) preloader.style.opacity = '0';
         if (body) body.classList.remove('overflow-hidden');
         if (typewriterElement) setupTypewriter();
