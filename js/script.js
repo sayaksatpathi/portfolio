@@ -217,26 +217,36 @@ updateTime();
 setInterval(updateTime, 1000);
 
 // Text flicker animation
-const flicker1 = document.getElementById('text-flicker-1');
-const flicker2 = document.getElementById('text-flicker-2');
+const flicker = document.getElementById('text-flicker');
+const placeholder = document.getElementById('text-placeholder');
+if (flicker && placeholder) {
+    const words = [
+        { text: 'breaking', cls: 'text-red-500 line-through' },
+        { text: 'fixing',   cls: 'text-green-400' },
+        { text: 'building', cls: 'text-blue-400' },
+    ];
+    let current = 0;
 
-if (flicker1 && flicker2) {
-    let showingBreaking = true;
+    flicker.style.opacity = '1';
+
     setInterval(() => {
-        if (showingBreaking) {
-            // Bring fixing to front, crossfade simultaneously
-            flicker2.style.zIndex = '2';
-            flicker1.style.zIndex = '1';
-            flicker1.style.opacity = '0';
-            flicker2.style.opacity = '1';
-        } else {
-            // Bring breaking to front, crossfade simultaneously
-            flicker1.style.zIndex = '2';
-            flicker2.style.zIndex = '1';
-            flicker2.style.opacity = '0';
-            flicker1.style.opacity = '1';
-        }
-        showingBreaking = !showingBreaking;
+        // Fade out
+        flicker.style.opacity = '0';
+
+        setTimeout(() => {
+            current = (current + 1) % words.length;
+            const word = words[current];
+
+            // Update both so invisible spacer always matches visible word width
+            flicker.textContent = word.text;
+            placeholder.textContent = word.text;
+
+            flicker.className = `absolute left-0 top-0 ${word.cls}`;
+            flicker.style.transition = 'opacity 0.5s ease';
+
+            // Fade in
+            flicker.style.opacity = '1';
+        }, 500);
     }, 2500);
 }
 
