@@ -459,3 +459,35 @@
         #main-nav a:hover {
             opacity: 0.7;
         }
+        /* ===== MOBILE CRITICAL FIXES ===== */
+        @media (max-width: 767px) {
+            /* Fix: disable sticky parallax scroll spacer on mobile - eliminates blank scroll area */
+            .hero-parallax-spacer {
+                height: 100vh !important;
+            }
+
+            /* Fix: reveal animations cause invisible-but-space-occupying elements on mobile.
+               Skip animation entirely — show all content immediately on mobile. */
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+
+            /* Fix: hide desktop cursor element on mobile (serves no purpose) */
+            #cursor {
+                display: none !important;
+            }
+
+            /* Fix: section min-height causes excessive blank space on mobile */
+            .section {
+                min-height: unset;
+            }
+
+            /* Fix: skill/project card 3D transform effects break layout on mobile */
+            .skill-card,
+            .project-card {
+                transform: none !important;
+                transition: box-shadow 0.2s ease !important;
+            }
+        }
