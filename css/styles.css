@@ -461,33 +461,58 @@
         }
         /* ===== MOBILE CRITICAL FIXES ===== */
         @media (max-width: 767px) {
-            /* Fix: disable sticky parallax scroll spacer on mobile - eliminates blank scroll area */
+
+            /* FIX 1: Disable sticky parallax scroll completely — hero becomes a
+               normal block section. Eliminates the blank dark gap before skills. */
             .hero-parallax-spacer {
-                height: 100vh !important;
+                height: auto !important;
+            }
+            #hero-section {
+                position: relative !important;
+                top: auto !important;
             }
 
-            /* Fix: reveal animations cause invisible-but-space-occupying elements on mobile.
-               Skip animation entirely — show all content immediately on mobile. */
+            /* FIX 2: bg-dark wrapper inline style min-height:100vh creates blank dark space.
+               !important is required to beat the inline style specificity. */
+            #dark-wrapper {
+                min-height: 0 !important;
+            }
+
+            /* FIX 3: All sections have min-height:100vh causing huge blank areas on
+               mobile where content is shorter than the viewport. Force compact. */
+            .section {
+                min-height: 0 !important;
+                justify-content: flex-start;
+                padding-top: 5rem;
+                padding-bottom: 2.5rem;
+            }
+
+            /* FIX 4: Reveal animations — elements start hidden (opacity:0) until
+               IntersectionObserver fires. The observer can silently fail inside
+               sticky/overflow containers on mobile. Disable animation entirely. */
             .reveal {
                 opacity: 1 !important;
                 transform: none !important;
                 transition: none !important;
             }
 
-            /* Fix: hide desktop cursor element on mobile (serves no purpose) */
+            /* FIX 5: Desktop-only custom cursor — useless on touch devices */
             #cursor {
                 display: none !important;
             }
 
-            /* Fix: section min-height causes excessive blank space on mobile */
-            .section {
-                min-height: unset;
-            }
-
-            /* Fix: skill/project card 3D transform effects break layout on mobile */
+            /* FIX 6: 3D card tilt transforms jank on mobile; hover doesn't exist on touch */
             .skill-card,
             .project-card {
                 transform: none !important;
-                transition: box-shadow 0.2s ease !important;
+            }
+            .skill-card img,
+            .project-card img {
+                transform: none !important;
+            }
+
+            /* FIX 7: Marquee text is oversized on narrow screens */
+            .marquee-content span {
+                font-size: 2.5rem !important;
             }
         }
