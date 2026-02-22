@@ -99,21 +99,6 @@
             letter-spacing: -0.05em;
         }
         
-        /* Mobile improvements */
-        @media (max-width: 640px) {
-            .container {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-            .section {
-                min-height: auto;
-            }
-            .hero-section {
-                padding-top: 6rem;
-                padding-bottom: 2rem;
-            }
-        }
-        
         .skills-grid {
             position: relative;
             perspective: 1000px;
@@ -458,95 +443,4 @@
         }
         #main-nav a:hover {
             opacity: 0.7;
-        }
-        /* ===== MOBILE CRITICAL FIXES ===== */
-        @media (max-width: 767px) {
-
-            /* FIX 1: Disable sticky parallax scroll completely — hero becomes a
-               normal block section. Eliminates the blank dark gap before skills. */
-            .hero-parallax-spacer {
-                height: auto !important;
-            }
-            #hero-section {
-                position: relative !important;
-                top: auto !important;
-            }
-
-            /* FIX 2: bg-dark wrapper inline style min-height:100vh creates blank dark space.
-               !important is required to beat the inline style specificity. */
-            #dark-wrapper {
-                min-height: 0 !important;
-            }
-
-            /* FIX 3: All sections have min-height:100vh causing huge blank areas on
-               mobile where content is shorter than the viewport. Force compact. */
-            .section {
-                min-height: 0 !important;
-                justify-content: flex-start;
-                padding-top: 5rem;
-                padding-bottom: 2.5rem;
-            }
-
-            /* FIX 4: Reveal animations — elements start hidden (opacity:0) until
-               IntersectionObserver fires. The observer can silently fail inside
-               sticky/overflow containers on mobile. Disable animation entirely. */
-            .reveal {
-                opacity: 1 !important;
-                transform: none !important;
-                transition: none !important;
-            }
-
-            /* FIX 5: Desktop-only custom cursor — useless on touch devices */
-            #cursor {
-                display: none !important;
-            }
-
-            /* FIX 6: 3D card tilt transforms jank on mobile; hover doesn't exist on touch */
-            .skill-card,
-            .project-card {
-                transform: none !important;
-            }
-            .skill-card img,
-            .project-card img {
-                transform: none !important;
-            }
-
-            /* FIX 7: Marquee text is oversized on narrow screens */
-            .marquee-content span {
-                font-size: 2.5rem !important;
-            }
-
-            /* FIX 8: Overlay menu — reduce padding & nav font size on small phones */
-            #overlay-menu {
-                padding: 1.25rem;
-            }
-            #overlay-menu nav a {
-                font-size: 2.25rem !important;
-            }
-
-            /* FIX 9: Preloader bottom bar — prevent wrap on narrow screens */
-            .preloader-bottom-bar {
-                font-size: 0.7rem;
-                bottom: 1rem;
-                left: 1rem;
-                right: 1rem;
-            }
-            .loading-bar {
-                width: 70px;
-            }
-
-            /* FIX 10: Hero stats grid — tighten text so 3 columns fit comfortably */
-            .hero-stats-text {
-                font-size: 0.6rem !important;
-            }
-
-            /* FIX 11: GitHub chart wrapper — tighter top padding on mobile */
-            #github-chart-wrapper {
-                padding: 0.5rem !important;
-            }
-
-            /* FIX 12: Footer time columns — stack cleanly */
-            footer .grid {
-                gap: 1.5rem;
-            }
         }
