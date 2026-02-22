@@ -224,13 +224,17 @@ if (flicker1 && flicker2) {
     let showingBreaking = true;
     setInterval(() => {
         if (showingBreaking) {
-            // Fade out "breaking", wait for full fade, then fade in "fixing"
+            // Bring fixing to front, crossfade simultaneously
+            flicker2.style.zIndex = '2';
+            flicker1.style.zIndex = '1';
             flicker1.style.opacity = '0';
-            setTimeout(() => { flicker2.style.opacity = '1'; }, 550);
+            flicker2.style.opacity = '1';
         } else {
-            // Fade out "fixing", wait for full fade, then fade in "breaking"
+            // Bring breaking to front, crossfade simultaneously
+            flicker1.style.zIndex = '2';
+            flicker2.style.zIndex = '1';
             flicker2.style.opacity = '0';
-            setTimeout(() => { flicker1.style.opacity = '1'; }, 550);
+            flicker1.style.opacity = '1';
         }
         showingBreaking = !showingBreaking;
     }, 2500);
