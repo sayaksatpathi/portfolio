@@ -216,6 +216,37 @@
             background-color: #4CAF50;
         }
         
+        /* ── Mobile performance: kill expensive effects on small screens ────────── */
+        @media (max-width: 767px) {
+            /* Stop the continuous float + particle animations entirely */
+            .bg-dark::before,
+            .bg-dark::after {
+                animation: none !important;
+                will-change: auto;
+            }
+            /* CSS blur is the #1 GPU killer on mobile — remove from decorative elements */
+            .blur-3xl { filter: none !important; }
+            .blur-2xl { filter: none !important; }
+            /* Flatten 3D card layers — preserve-3d forces compositing even when idle */
+            .skill-card,
+            .project-card {
+                transform-style: flat !important;
+                perspective: none !important;
+            }
+            /* Marquee: reduce paint area */
+            .marquee-content {
+                animation-duration: 60s;
+            }
+        }
+        /* Respect user's motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
         /* Hero parallax spacer — 100vh on mobile (no parallax), 200vh on md+ (enables parallax) */
         .hero-parallax-spacer {
             height: 100vh;

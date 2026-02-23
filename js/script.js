@@ -36,9 +36,9 @@ overlayLinks.forEach(link => {
     });
 });
 
-// Overlay Menu Hover Effect
+// Overlay Menu Hover Effect — desktop only
 const menuHoverBg = document.getElementById('menu-hover-bg');
-if (menuHoverBg) {
+if (menuHoverBg && !isTouchDevice) {
     overlayLinks.forEach(link => {
         link.addEventListener('mouseenter', () => {
             menuHoverBg.classList.remove('opacity-0');
@@ -250,8 +250,12 @@ if (flicker && placeholder) {
     }, 2500);
 }
 
+// Detect touch-only devices — skip all mouse-driven effects on mobile
+const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
 // 3D Card Effect
 function initialize3dCards(selector) {
+    if (isTouchDevice) return; // skip entirely on mobile
     const cards3D = document.querySelectorAll(selector);
     cards3D.forEach(card => {
         const image = card.querySelector('img');
@@ -292,9 +296,9 @@ function initialize3dCards(selector) {
     });
 }
 
-// Magnetic effect
+// Magnetic effect — desktop only
 const magneticLinks = document.querySelectorAll('.magnetic-link');
-magneticLinks.forEach(link => {
+if (!isTouchDevice) magneticLinks.forEach(link => {
     link.addEventListener('mousemove', (e) => {
         const { clientX, clientY } = e;
         const { left, top, width, height } = link.getBoundingClientRect();
@@ -445,7 +449,7 @@ window.addEventListener('load', () => {
 
     const skillsGrid = document.querySelector('.skills-grid');
     const glow = document.getElementById('skills-grid-glow');
-    if (skillsGrid && glow) {
+    if (skillsGrid && glow && !isTouchDevice) {
         skillsGrid.addEventListener('mousemove', (e) => {
             const rect = skillsGrid.getBoundingClientRect();
             const x = e.clientX - rect.left;

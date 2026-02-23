@@ -5,3 +5,4 @@ tailwind.config.js
 package.json
 package-lock.json
 # built files are committed intentionally (css/tailwind.css, js/lucide.min.js)
+.vercel
