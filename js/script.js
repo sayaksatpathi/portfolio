@@ -1,6 +1,9 @@
 // Safely initialize Lucide icons — if CDN fails on mobile, script still runs
 try { lucide.createIcons(); } catch(e) { console.warn('Lucide icons unavailable:', e); }
 
+// Detect touch-only devices — used to skip mouse-exclusive effects on mobile
+const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
 // Overlay Menu Toggle
 const menuBtn = document.getElementById('menu-btn');
 const overlayMenu = document.getElementById('overlay-menu');
@@ -38,7 +41,7 @@ overlayLinks.forEach(link => {
 
 // Overlay Menu Hover Effect
 const menuHoverBg = document.getElementById('menu-hover-bg');
-if (menuHoverBg) {
+if (menuHoverBg && !isTouchDevice) {
     overlayLinks.forEach(link => {
         link.addEventListener('mouseenter', () => {
             menuHoverBg.classList.remove('opacity-0');
@@ -112,8 +115,6 @@ const observer = new IntersectionObserver((entries) => {
             const sectionId = entry.target.id;
             currentSection = sectionId;
 
-            console.log('Current section:', sectionId, 'isDark:', isDark); // Debug log
-
             if (isDark) {
                 // Dark sections - hide main nav, show white text
                 document.body.classList.add('dark');
@@ -177,7 +178,7 @@ window.addEventListener('scroll', () => {
             menuBtn.classList.add('text-gray-900');
         }
     }, 50);
-});
+}, { passive: true });
 
 // Back to top button
 const backToTopButton = document.getElementById('back-to-top');
@@ -252,6 +253,7 @@ if (flicker && placeholder) {
 
 // 3D Card Effect
 function initialize3dCards(selector) {
+    if (isTouchDevice) return; // no hover on touch screens
     const cards3D = document.querySelectorAll(selector);
     cards3D.forEach(card => {
         const image = card.querySelector('img');
@@ -294,7 +296,7 @@ function initialize3dCards(selector) {
 
 // Magnetic effect
 const magneticLinks = document.querySelectorAll('.magnetic-link');
-magneticLinks.forEach(link => {
+if (!isTouchDevice) magneticLinks.forEach(link => {
     link.addEventListener('mousemove', (e) => {
         const { clientX, clientY } = e;
         const { left, top, width, height } = link.getBoundingClientRect();
@@ -445,7 +447,7 @@ window.addEventListener('load', () => {
 
     const skillsGrid = document.querySelector('.skills-grid');
     const glow = document.getElementById('skills-grid-glow');
-    if (skillsGrid && glow) {
+    if (skillsGrid && glow && !isTouchDevice) {
         skillsGrid.addEventListener('mousemove', (e) => {
             const rect = skillsGrid.getBoundingClientRect();
             const x = e.clientX - rect.left;

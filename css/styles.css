@@ -212,6 +212,29 @@
             background-color: #4CAF50;
         }
         
+        /* ── Mobile performance: additive overrides for small screens ────────── */
+        @media (max-width: 767px) {
+            /* Stop continuous background animations — biggest frame-rate killer */
+            .bg-dark::before { animation: none !important; }
+            .bg-dark::after  { animation: none !important; }
+            /* Remove CSS blur on decorative orbs — forces GPU re-raster every frame */
+            .blur-3xl { filter: none !important; }
+            .blur-2xl { filter: none !important; }
+            /* Flatten 3D card layers — preserve-3d forces compositing even when idle */
+            .skill-card,
+            .project-card { transform-style: flat !important; }
+            /* Slow down marquee to reduce paint frequency */
+            .marquee-content { animation-duration: 60s !important; }
+        }
+        /* Respect OS-level reduce-motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
         /* Hero parallax spacer — 100vh on mobile (no parallax), 200vh on md+ (enables parallax) */
         .hero-parallax-spacer {
             height: 100vh;
@@ -457,4 +480,36 @@
         }
         #main-nav a:hover {
             opacity: 0.7;
+        }
+        /* ── Mobile-only performance layer (purely additive, nothing above changed) ── */
+        @media (max-width: 767px) {
+            /* Stop continuous background animations — biggest frame-rate killer on mobile */
+            .bg-dark::before { animation: none !important; }
+            .bg-dark::after  { animation: none !important; }
+
+            /* CSS blur forces GPU re-rasterisation every frame — turn off on mobile */
+            .blur-3xl { filter: none !important; }
+            .blur-2xl { filter: none !important; }
+
+            /* preserve-3d creates compositor layers even when idle — flatten on mobile */
+            .skill-card,
+            .project-card { transform-style: flat !important; }
+
+            /* Body colour transition triggers full repaint on every section change */
+            body { transition: none !important; }
+
+            /* Promote marquee to its own GPU layer so scroll doesn't stall it */
+            .marquee-content { will-change: transform; transform: translateZ(0); }
+
+            /* Slow down the marquee slightly — halves paint frequency */
+            .marquee-content { animation-duration: 60s; }
+        }
+
+        /* Respect system-level reduce-motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
