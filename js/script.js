@@ -36,9 +36,9 @@ overlayLinks.forEach(link => {
     });
 });
 
-// Overlay Menu Hover Effect — desktop only
+// Overlay Menu Hover Effect
 const menuHoverBg = document.getElementById('menu-hover-bg');
-if (menuHoverBg && !isTouchDevice) {
+if (menuHoverBg) {
     overlayLinks.forEach(link => {
         link.addEventListener('mouseenter', () => {
             menuHoverBg.classList.remove('opacity-0');
@@ -112,34 +112,36 @@ const observer = new IntersectionObserver((entries) => {
             const sectionId = entry.target.id;
             currentSection = sectionId;
 
-            requestAnimationFrame(() => {
-                if (isDark) {
-                    // Dark sections - hide main nav, show white text
-                    document.body.classList.add('dark');
-                    header.classList.add('text-white');
-                    header.classList.remove('text-gray-900');
-                    menuBtn.classList.add('text-white', 'ball-style');
-                    menuBtn.classList.remove('text-gray-900');
-                    mainNav.classList.add('opacity-0', 'pointer-events-none');
-                } else {
-                    // Light sections (hero and footer) - show nav with dark text
-                    document.body.classList.remove('dark');
-                    header.classList.remove('text-white');
-                    header.classList.add('text-gray-900');
-                    menuBtn.classList.remove('text-white', 'ball-style');
-                    menuBtn.classList.add('text-gray-900');
-                    mainNav.classList.remove('opacity-0', 'pointer-events-none');
-                }
+            console.log('Current section:', sectionId, 'isDark:', isDark); // Debug log
 
-                // Special handling for hero section - always ensure nav is visible
-                if (sectionId === 'hero-section') {
+            if (isDark) {
+                // Dark sections - hide main nav, show white text
+                document.body.classList.add('dark');
+                header.classList.add('text-white');
+                header.classList.remove('text-gray-900');
+                menuBtn.classList.add('text-white', 'ball-style');
+                menuBtn.classList.remove('text-gray-900');
+                mainNav.classList.add('opacity-0', 'pointer-events-none');
+            } else {
+                // Light sections (hero and footer) - show nav with dark text
+                document.body.classList.remove('dark');
+                header.classList.remove('text-white');
+                header.classList.add('text-gray-900');
+                menuBtn.classList.remove('text-white', 'ball-style');
+                menuBtn.classList.add('text-gray-900');
+                mainNav.classList.remove('opacity-0', 'pointer-events-none');
+            }
+
+            // Special handling for hero section - always ensure nav is visible
+            if (sectionId === 'hero-section') {
+                setTimeout(() => {
                     mainNav.classList.remove('opacity-0', 'pointer-events-none');
                     header.classList.remove('text-white');
                     header.classList.add('text-gray-900');
                     menuBtn.classList.remove('text-white', 'ball-style');
                     menuBtn.classList.add('text-gray-900');
-                }
-            });
+                }, 100);
+            }
         }
     });
 }, observerOptions);
@@ -167,17 +169,15 @@ window.addEventListener('scroll', () => {
         const isHeroVisible = heroRect.top <= 100 && heroRect.bottom >= 100;
 
         if (isHeroVisible && currentSection === 'hero-section') {
-            requestAnimationFrame(() => {
-                // Force show navigation on hero
-                mainNav.classList.remove('opacity-0', 'pointer-events-none');
-                header.classList.remove('text-white');
-                header.classList.add('text-gray-900');
-                menuBtn.classList.remove('text-white', 'ball-style');
-                menuBtn.classList.add('text-gray-900');
-            });
+            // Force show navigation on hero
+            mainNav.classList.remove('opacity-0', 'pointer-events-none');
+            header.classList.remove('text-white');
+            header.classList.add('text-gray-900');
+            menuBtn.classList.remove('text-white', 'ball-style');
+            menuBtn.classList.add('text-gray-900');
         }
     }, 50);
-}, { passive: true });
+});
 
 // Back to top button
 const backToTopButton = document.getElementById('back-to-top');
@@ -250,12 +250,8 @@ if (flicker && placeholder) {
     }, 2500);
 }
 
-// Detect touch-only devices — skip all mouse-driven effects on mobile
-const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-
 // 3D Card Effect
 function initialize3dCards(selector) {
-    if (isTouchDevice) return; // skip entirely on mobile
     const cards3D = document.querySelectorAll(selector);
     cards3D.forEach(card => {
         const image = card.querySelector('img');
@@ -296,9 +292,9 @@ function initialize3dCards(selector) {
     });
 }
 
-// Magnetic effect — desktop only
+// Magnetic effect
 const magneticLinks = document.querySelectorAll('.magnetic-link');
-if (!isTouchDevice) magneticLinks.forEach(link => {
+magneticLinks.forEach(link => {
     link.addEventListener('mousemove', (e) => {
         const { clientX, clientY } = e;
         const { left, top, width, height } = link.getBoundingClientRect();
@@ -449,7 +445,7 @@ window.addEventListener('load', () => {
 
     const skillsGrid = document.querySelector('.skills-grid');
     const glow = document.getElementById('skills-grid-glow');
-    if (skillsGrid && glow && !isTouchDevice) {
+    if (skillsGrid && glow) {
         skillsGrid.addEventListener('mousemove', (e) => {
             const rect = skillsGrid.getBoundingClientRect();
             const x = e.clientX - rect.left;
