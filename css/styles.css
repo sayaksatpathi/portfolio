@@ -1,6 +1,5 @@
         body {
             font-family: 'Inter', sans-serif;
-            transition: background-color 0.5s ease, color 0.5s ease;
             overscroll-behavior: none;
         }
         .section {
@@ -28,6 +27,7 @@
             color: #F3F0E9;
             position: relative;
             overflow: hidden;
+            contain: layout style;
         }
         
         .bg-dark::before {
@@ -44,9 +44,13 @@
             animation: backgroundFloat 20s ease-in-out infinite;
             pointer-events: none;
             z-index: 0;
+            will-change: transform;
+            transform: translateZ(0);
         }
         
         .bg-dark::after {
+            will-change: background-position;
+            transform: translateZ(0);
             content: '';
             position: absolute;
             top: 0;
@@ -439,6 +443,8 @@
         .marquee-content {
             display: inline-block;
             animation: marquee 30s linear infinite;
+            will-change: transform;
+            transform: translateZ(0);
         }
         @keyframes marquee {
             0% { transform: translateX(0); }
