@@ -1,3 +1,6 @@
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Inter', sans-serif;
             transition: background-color 0.5s ease, color 0.5s ease;
@@ -44,6 +47,8 @@
             animation: backgroundFloat 20s ease-in-out infinite;
             pointer-events: none;
             z-index: 0;
+            will-change: transform, opacity;
+            transform: translateZ(0);
         }
         
         .bg-dark::after {
@@ -62,6 +67,8 @@
             animation: particleMove 30s linear infinite;
             pointer-events: none;
             z-index: 0;
+            will-change: background-position;
+            transform: translateZ(0);
         }
         
         .bg-dark > * {
@@ -462,6 +469,8 @@
         .marquee-content {
             display: inline-block;
             animation: marquee 30s linear infinite;
+            will-change: transform;
+            transform: translateZ(0);
         }
         @keyframes marquee {
             0% { transform: translateX(0); }

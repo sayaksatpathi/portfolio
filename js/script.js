@@ -1,6 +1,20 @@
 // Safely initialize Lucide icons — if CDN fails on mobile, script still runs
 try { lucide.createIcons(); } catch(e) { console.warn('Lucide icons unavailable:', e); }
 
+// Smooth-scroll all anchor links (reliable cross-browser, works even if CSS scroll-behavior is overridden)
+document.addEventListener('click', (e) => {
+    const anchor = e.target.closest('a[href^="#"]');
+    if (!anchor) return;
+    const targetId = anchor.getAttribute('href').slice(1);
+    if (!targetId) return;
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Update URL hash without triggering a jump
+    history.pushState(null, '', '#' + targetId);
+});
+
 // Detect touch-only devices — used to skip mouse-exclusive effects on mobile
 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
