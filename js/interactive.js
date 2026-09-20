@@ -339,6 +339,25 @@
         });
     })();
 
+    /* ══════════════════ 6b. CERTIFICATE LIGHTBOX ══════════════════ */
+    (function certLightbox() {
+        document.addEventListener('click', e => {
+            const media = e.target.closest('#certifications-section .cert-media');
+            if (!media) return;
+            const card = media.closest('.cert-card');
+            const img = card.querySelector('img');
+            const title = card.querySelector('.cert-title')?.textContent || 'Certificate';
+            const issuer = card.querySelector('.cert-issuer')?.textContent || '';
+            const verify = card.querySelector('.cert-verify')?.href;
+            modal.open(`<div class="ix-modal-hero" style="background:#fff"><img src="${img.src}" alt="${title} certificate" style="width:100%;height:auto;object-fit:contain;border-radius:20px 20px 0 0"><button class="ix-modal-close" aria-label="Close">✕</button></div>
+                <div class="ix-modal-body">
+                    <h3>${title}</h3>
+                    <p class="ix-modal-tagline">${issuer}</p>
+                    ${verify ? `<div class="ix-modal-actions"><a class="ix-btn ix-btn-primary" href="${verify}" target="_blank" rel="noopener noreferrer"><i data-lucide="badge-check"></i> Verify credential</a></div>` : ''}
+                </div>`);
+        });
+    })();
+
     /* ══════════════════ 7. COPY EMAIL + TOAST ══════════════════ */
     const toast = (function () {
         const wrap = document.createElement('div'); wrap.id = 'ix-toasts'; document.body.appendChild(wrap);
