@@ -885,3 +885,13 @@ body.dark .ix-rail-dot.active { background: #60a5fa; box-shadow: 0 0 0 4px rgba(
 @media (prefers-reduced-motion: reduce) {
     .project-card.ix-anim, .ix-modal, .ix-toast { transition: none !important; }
 }
+
+/* ── Default page scale ────────────────────────────────────────────────
+   Render the site at 80% on desktop so the full page fits on screen
+   without visitors having to zoom out (their OS/browser scaling was
+   making it feel enlarged). Scoped to >=1024px: because zoom < 1 only
+   ever increases the effective CSS width, a min-width threshold can
+   never flip-flop. Phones and tablets are left at 100%. */
+@media (min-width: 1024px) {
+    html { zoom: 0.8; }
+}
