@@ -1,9 +1,10 @@
-const CACHE = 'sayak-portfolio-v4';
+const CACHE = 'sayak-portfolio-v5';
 const ASSETS = [
     '/',
     '/index.html',
     '/css/styles.css',
-    '/js/script.js'
+    '/js/script.js',
+    '/js/interactive.js'
 ];
 
 self.addEventListener('install', e => {

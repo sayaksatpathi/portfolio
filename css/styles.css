@@ -459,7 +459,7 @@
             width: 0;
             height: 100%;
             background-color: #F3F0E9;
-            animation: fill-bar 2.5s ease-out forwards;
+            animation: fill-bar 1.1s ease-out forwards;
         }
         @keyframes fill-bar {
             from { width: 0; }
@@ -562,3 +562,326 @@
                 transition-duration: 0.01ms !important;
             }
         }
+/* ════════════════════════════════════════════════════════════════════
+   INTERACTIVE UPGRADES  (custom cursor, scroll progress, section rail,
+   project filter, modal, command palette, terminal, toast)
+   All classes are prefixed `ix-` and fully self-styled so they don't
+   depend on the prebuilt Tailwind build.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── Custom cursor ─────────────────────────────────────────────────── */
+#cursor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    mix-blend-mode: difference;
+    will-change: transform;
+    transition: width .25s ease, height .25s ease, background-color .25s ease, border-color .25s ease;
+}
+#cursor .ix-cursor-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    color: #fff;
+    opacity: 0;
+    transform: scale(.6);
+    transition: opacity .2s ease, transform .2s ease;
+    text-transform: uppercase;
+    white-space: nowrap;
+    pointer-events: none;
+}
+#cursor.ix-labelled {
+    width: 72px;
+    height: 72px;
+    background-color: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.9);
+}
+#cursor.ix-labelled .ix-cursor-label { opacity: 1; transform: scale(1); }
+
+/* ── Scroll progress bar ───────────────────────────────────────────── */
+#ix-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+    z-index: 9998;
+    pointer-events: none;
+    will-change: transform;
+}
+
+/* ── Section dot rail ──────────────────────────────────────────────── */
+#ix-rail {
+    position: fixed;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-end;
+}
+.ix-rail-dot {
+    position: relative;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: rgba(150,150,150,.45);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform .25s ease, background-color .25s ease;
+}
+.ix-rail-dot:hover { transform: scale(1.35); }
+.ix-rail-dot.active {
+    background: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59,130,246,.2);
+}
+body.dark .ix-rail-dot { background: rgba(255,255,255,.35); }
+body.dark .ix-rail-dot.active { background: #60a5fa; box-shadow: 0 0 0 4px rgba(96,165,250,.25); }
+.ix-rail-dot .ix-rail-label {
+    position: absolute;
+    right: 20px; top: 50%;
+    transform: translateY(-50%) translateX(6px);
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: opacity .2s ease, transform .2s ease;
+}
+.ix-rail-dot:hover .ix-rail-label { opacity: 1; transform: translateY(-50%) translateX(0); }
+@media (max-width: 900px) { #ix-rail { display: none; } }
+
+/* ── Project filter bar ────────────────────────────────────────────── */
+.ix-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 2rem;
+}
+.ix-filter-btn {
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    color: #cbd5e1;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.12);
+    padding: 7px 16px;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all .25s ease;
+}
+.ix-filter-btn:hover { border-color: rgba(255,255,255,.4); color: #fff; }
+.ix-filter-btn.active {
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-color: transparent;
+    color: #fff;
+}
+.ix-filter-count { opacity: .6; font-weight: 500; margin-left: 4px; }
+.project-card.ix-hidden {
+    opacity: 0;
+    transform: scale(.92);
+    pointer-events: none;
+    position: absolute;
+    width: 0; height: 0; overflow: hidden;
+    margin: 0; padding: 0; border: 0;
+}
+.project-card.ix-anim { transition: opacity .4s ease, transform .4s ease; }
+
+/* Case-study affordance on cards */
+.ix-case-btn {
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 12px;
+    padding: 9px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    background: rgba(255,255,255,.06);
+    border: 1px dashed rgba(255,255,255,.25);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: all .25s ease;
+}
+.ix-case-btn:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.5); }
+
+/* ── Modal (project case study + skill panel) ──────────────────────── */
+.ix-modal-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(8,10,16,.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s ease;
+}
+.ix-modal-backdrop.open { opacity: 1; pointer-events: auto; }
+.ix-modal {
+    width: 100%;
+    max-width: 720px;
+    max-height: 88vh;
+    overflow-y: auto;
+    background: linear-gradient(180deg, #14161c, #0e1014);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 20px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.6);
+    transform: translateY(24px) scale(.98);
+    transition: transform .3s cubic-bezier(.2,.7,.3,1);
+    color: #e5e7eb;
+}
+.ix-modal-backdrop.open .ix-modal { transform: translateY(0) scale(1); }
+.ix-modal-hero { position: relative; }
+.ix-modal-hero img { width: 100%; height: 240px; object-fit: cover; object-position: top; display: block; border-radius: 20px 20px 0 0; }
+.ix-modal-hero .ix-modal-banner {
+    height: 150px; display: flex; align-items: center; justify-content: center;
+    border-radius: 20px 20px 0 0;
+    background: linear-gradient(135deg, rgba(59,130,246,.25), #0e1014);
+}
+.ix-modal-hero .ix-modal-banner i { width: 56px; height: 56px; }
+.ix-modal-close {
+    position: absolute; top: 14px; right: 14px;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(0,0,0,.5); color: #fff; border: 1px solid rgba(255,255,255,.2);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background .2s ease, transform .2s ease;
+}
+.ix-modal-close:hover { background: rgba(0,0,0,.8); transform: rotate(90deg); }
+.ix-modal-body { padding: 24px 28px 28px; }
+.ix-modal-body h3 { font-size: 26px; font-weight: 800; color: #fff; margin: 0 0 6px; }
+.ix-modal-tagline { color: #9ca3af; font-size: 14px; margin-bottom: 18px; }
+.ix-modal-chip {
+    display: inline-block; font-size: 11px; font-weight: 700;
+    padding: 4px 10px; border-radius: 9999px; margin: 0 6px 6px 0;
+    background: rgba(96,165,250,.15); color: #93c5fd;
+}
+.ix-modal-section { margin-top: 18px; }
+.ix-modal-section h4 {
+    font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: #60a5fa; margin: 0 0 6px;
+}
+.ix-modal-section p, .ix-modal-section li { color: #cbd5e1; font-size: 14.5px; line-height: 1.65; }
+.ix-modal-section ul { margin: 0; padding-left: 18px; }
+.ix-modal-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.ix-btn {
+    font: inherit; font-size: 14px; font-weight: 600; text-decoration: none;
+    padding: 10px 20px; border-radius: 10px; cursor: pointer; border: 1px solid transparent;
+    display: inline-flex; align-items: center; gap: 8px; transition: all .2s ease;
+}
+.ix-btn-primary { background: linear-gradient(90deg,#3b82f6,#8b5cf6); color: #fff; }
+.ix-btn-primary:hover { filter: brightness(1.1); }
+.ix-btn-ghost { background: transparent; border-color: rgba(255,255,255,.3); color: #e5e7eb; }
+.ix-btn-ghost:hover { background: rgba(255,255,255,.08); border-color: #fff; }
+.ix-skill-projlist a {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 12px; margin-bottom: 8px; border-radius: 10px;
+    background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+    color: #e5e7eb; text-decoration: none; font-size: 14px; transition: all .2s ease;
+}
+.ix-skill-projlist a:hover { background: rgba(255,255,255,.09); transform: translateX(3px); }
+
+/* ── Command palette ───────────────────────────────────────────────── */
+.ix-palette-backdrop {
+    position: fixed; inset: 0; z-index: 9500;
+    background: rgba(8,10,16,.6);
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    display: flex; align-items: flex-start; justify-content: center;
+    padding-top: 14vh;
+    opacity: 0; pointer-events: none; transition: opacity .2s ease;
+}
+.ix-palette-backdrop.open { opacity: 1; pointer-events: auto; }
+.ix-palette {
+    width: 100%; max-width: 560px;
+    background: #14161c; border: 1px solid rgba(255,255,255,.12);
+    border-radius: 16px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.6);
+    transform: translateY(-12px); transition: transform .2s ease;
+}
+.ix-palette-backdrop.open .ix-palette { transform: translateY(0); }
+.ix-palette input {
+    width: 100%; box-sizing: border-box; border: none; outline: none;
+    background: transparent; color: #fff; font: inherit; font-size: 16px;
+    padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.ix-palette input::placeholder { color: #6b7280; }
+.ix-palette-list { max-height: 320px; overflow-y: auto; padding: 8px; }
+.ix-palette-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px; border-radius: 10px; cursor: pointer; color: #d1d5db; font-size: 14.5px;
+}
+.ix-palette-item i { width: 18px; height: 18px; color: #60a5fa; }
+.ix-palette-item .ix-kbd { margin-left: auto; font-size: 11px; color: #6b7280; }
+.ix-palette-item.active, .ix-palette-item:hover { background: rgba(96,165,250,.15); color: #fff; }
+.ix-palette-hint { padding: 10px 16px; font-size: 11px; color: #6b7280; border-top: 1px solid rgba(255,255,255,.08); display: flex; gap: 14px; }
+.ix-kbd-key { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); border-radius: 5px; padding: 1px 6px; font-size: 11px; }
+
+/* ── Terminal ──────────────────────────────────────────────────────── */
+.ix-terminal {
+    background: #0b0e14;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 14px;
+    overflow: hidden;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    box-shadow: 0 20px 50px rgba(0,0,0,.35);
+}
+.ix-term-bar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: #12161f; border-bottom: 1px solid rgba(255,255,255,.08); }
+.ix-term-dot { width: 12px; height: 12px; border-radius: 50%; }
+.ix-term-title { margin-left: 10px; font-size: 12px; color: #8b98a9; }
+.ix-term-body { padding: 16px; height: 300px; overflow-y: auto; font-size: 13.5px; line-height: 1.7; color: #cbd5e1; cursor: text; }
+.ix-term-line { white-space: pre-wrap; word-break: break-word; }
+.ix-term-prompt { color: #4ade80; }
+.ix-term-path { color: #60a5fa; }
+.ix-term-accent { color: #c084fc; }
+.ix-term-muted { color: #6b7280; }
+.ix-term-inputline { display: flex; align-items: center; gap: 8px; }
+.ix-term-input { flex: 1; background: transparent; border: none; outline: none; color: #e5e7eb; font: inherit; }
+.ix-term-cmd { color: #fde047; }
+
+/* ── Toast ─────────────────────────────────────────────────────────── */
+#ix-toasts { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.ix-toast {
+    background: #14161c; color: #fff; border: 1px solid rgba(255,255,255,.15);
+    padding: 12px 18px; border-radius: 12px; font-size: 14px; font-weight: 600;
+    display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.4);
+    opacity: 0; transform: translateY(12px); transition: opacity .25s ease, transform .25s ease;
+}
+.ix-toast.show { opacity: 1; transform: translateY(0); }
+.ix-toast i { width: 18px; height: 18px; color: #4ade80; }
+
+/* ── GitHub chart: year switcher + custom tooltip ──────────────────── */
+.ix-gh-years { display: flex; gap: 6px; margin-bottom: 10px; }
+.ix-gh-year {
+    font: inherit; font-size: 12px; font-weight: 600; color: #9ca3af;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+    padding: 4px 12px; border-radius: 9999px; cursor: pointer; transition: all .2s ease;
+}
+.ix-gh-year:hover { color: #fff; border-color: rgba(255,255,255,.3); }
+.ix-gh-year.active { background: rgba(74,222,128,.15); color: #4ade80; border-color: rgba(74,222,128,.4); }
+#ix-gh-tooltip {
+    position: fixed; z-index: 9997; pointer-events: none;
+    background: #0b0e14; color: #e5e7eb; border: 1px solid rgba(255,255,255,.15);
+    border-radius: 8px; padding: 8px 10px; font-size: 12px; line-height: 1.4;
+    opacity: 0; transform: translateY(4px); transition: opacity .12s ease;
+    white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+#ix-gh-tooltip.show { opacity: 1; transform: translateY(0); }
+#ix-gh-tooltip b { color: #4ade80; }
+
+@media (prefers-reduced-motion: reduce) {
+    .project-card.ix-anim, .ix-modal, .ix-toast { transition: none !important; }
+}

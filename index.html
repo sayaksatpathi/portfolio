@@ -137,7 +137,6 @@
     <link rel="stylesheet" href="css/tailwind.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="js/lucide.min.js"></script>
-    <script src="https://www.youtube.com/iframe_api"></script>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -731,6 +730,7 @@
                                             <p class="text-xs sm:text-sm text-gray-400">2026 contributions</p>
                                         </div>
                                     </div>
+                                    <div class="ix-gh-years" id="ix-gh-years"></div>
                                     <div class="bg-gray-800/50 rounded-xl p-2 sm:p-4 mb-4 overflow-x-auto" id="github-chart-wrapper" style="-webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: #4ade80 #1f2937;">
                                         <div id="github-chart-container">
                                             <div class="text-gray-500 text-xs text-center py-6 animate-pulse">Loading live contributions from GitHub...</div>
@@ -1010,6 +1010,7 @@
         </div>
     </div>
     <script src="js/script.js"></script>
+    <script src="js/interactive.js"></script>
     <script>
         // Register Service Worker for offline support & always-on caching
         if ('serviceWorker' in navigator) {
@@ -1019,24 +1020,43 @@
         }
     </script>
     <script>
-        async function renderGitHubChart() {
+        // Custom tooltip shared by every contribution cell
+        const ghTip = document.createElement('div');
+        ghTip.id = 'ix-gh-tooltip';
+        document.body.appendChild(ghTip);
+        const MONTHS_FULL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        function ghShowTip(e, date, count, future) {
+            const d = new Date(date + 'T00:00:00');
+            const nice = `${MONTHS_FULL[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+            ghTip.innerHTML = future
+                ? `<b>${count}</b> — upcoming<br><span style="color:#9ca3af">${nice}</span>`
+                : `<b>${count} contribution${count === 1 ? '' : 's'}</b><br><span style="color:#9ca3af">${nice}</span>`;
+            ghTip.classList.add('show');
+            const pad = 14;
+            let x = e.clientX + pad, y = e.clientY + pad;
+            const r = ghTip.getBoundingClientRect();
+            if (x + r.width > innerWidth) x = e.clientX - r.width - pad;
+            if (y + r.height > innerHeight) y = e.clientY - r.height - pad;
+            ghTip.style.left = x + 'px'; ghTip.style.top = y + 'px';
+        }
+        function ghHideTip() { ghTip.classList.remove('show'); }
+
+        async function renderGitHubChart(year) {
             const container = document.getElementById('github-chart-container');
             const countEl = document.getElementById('gh-commit-count');
             if (!container) return;
             try {
-                const year = new Date().getFullYear();
                 const res = await fetch(`https://github-contributions-api.jogruber.de/v4/sayaksatpathi?y=${year}`);
                 const data = await res.json();
                 const contributions = data.contributions || [];
                 const total = data.total?.[year] || 0;
-                if (countEl) countEl.textContent = total + '+ commits';
+                if (countEl) countEl.textContent = total + ' commits';
                 if (!contributions.length) throw new Error('no data');
 
                 const contribMap = {};
                 contributions.forEach(d => { contribMap[d.date] = d; });
 
                 const today = new Date(); today.setHours(0,0,0,0);
-                // Always render full year Jan 1 → Dec 31
                 const startDate = new Date(`${year}-01-01`);
                 const endDate = new Date(`${year}-12-31`);
                 const firstSunday = new Date(startDate);
@@ -1085,19 +1105,42 @@
                         if (!day) return;
                         const x = LP + wi*(S+G), y = TP + di*(S+G);
                         const fill = day.future ? FUTURE_COLOR : COLORS[Math.min(day.level,4)];
-                        const title = day.future ? `${day.date}: upcoming` : `${day.date}: ${day.count} contributions`;
-                        svg += `<rect x="${x}" y="${y}" width="${S}" height="${S}" rx="2" fill="${fill}" opacity="${day.future ? '0.4' : '1'}"><title>${title}</title></rect>`;
+                        svg += `<rect class="ix-gh-cell" data-date="${day.date}" data-count="${day.count}" data-future="${day.future ? 1 : 0}" x="${x}" y="${y}" width="${S}" height="${S}" rx="2" fill="${fill}" opacity="${day.future ? '0.4' : '1'}" style="cursor:pointer"></rect>`;
                     });
                 });
 
                 svg += '</svg>';
                 container.innerHTML = svg;
+
+                // wire the custom tooltip
+                container.querySelectorAll('.ix-gh-cell').forEach(cell => {
+                    cell.addEventListener('mousemove', e => ghShowTip(e, cell.dataset.date, +cell.dataset.count, cell.dataset.future === '1'));
+                    cell.addEventListener('mouseleave', ghHideTip);
+                });
             } catch(e) {
                 container.innerHTML = `<img src="https://ghchart.rshah.org/4ade80/sayaksatpathi" class="w-full h-auto rounded-lg" />`;
                 if (countEl) countEl.textContent = '88+ commits';
             }
         }
-        renderGitHubChart();
+
+        // Year switcher
+        (function () {
+            const nowY = new Date().getFullYear();
+            const years = [nowY, nowY - 1, nowY - 2];
+            const yearsEl = document.getElementById('ix-gh-years');
+            const labelEl = document.querySelector('#activity-section .text-gray-400');
+            if (yearsEl) {
+                yearsEl.innerHTML = years.map((y, i) => `<button class="ix-gh-year${i === 0 ? ' active' : ''}" data-year="${y}">${y}</button>`).join('');
+                yearsEl.addEventListener('click', e => {
+                    const b = e.target.closest('.ix-gh-year'); if (!b) return;
+                    yearsEl.querySelectorAll('.ix-gh-year').forEach(x => x.classList.toggle('active', x === b));
+                    renderGitHubChart(+b.dataset.year);
+                    const sub = document.querySelector('#activity-section h3 + p, #activity-section p.text-xs');
+                    if (sub) sub.textContent = b.dataset.year + ' contributions';
+                });
+            }
+            renderGitHubChart(nowY);
+        })();
     </script>
 </body>
 
