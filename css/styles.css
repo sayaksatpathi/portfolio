@@ -100,7 +100,7 @@
             }
         }
         .huge-text {
-            font-size: clamp(2.5rem, 12vw, 12rem);
+            font-size: clamp(2.5rem, 9vw, 8.5rem);
             font-weight: 900;
             line-height: 1;
             letter-spacing: -0.05em;

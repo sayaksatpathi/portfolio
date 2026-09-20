@@ -217,44 +217,26 @@
                 </div>
 
                 <div class="container mx-auto flex flex-col justify-center h-full relative z-10 px-4 sm:px-0">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-6 gap-4 sm:gap-0">
-                        <div class="flex flex-col">
-                            <span class="text-xs sm:text-sm font-medium text-gray-600 mb-2 tracking-wider">HELLO,
-                                I'M</span>
-                            <h1 class="huge-text relative text-4xl sm:text-6xl lg:text-8xl">
+                    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                        <!-- Left: intro -->
+                        <div class="reveal">
+                            <span class="text-xs sm:text-sm font-medium text-gray-600 mb-2 tracking-wider" style="display:block">HELLO, I'M</span>
+                            <h1 class="huge-text relative text-4xl sm:text-6xl lg:text-7xl mb-4 sm:mb-5" style="display:block;width:fit-content">
                                 SAYAK
-                                <span
-                                    class="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 text-lg sm:text-2xl">✨</span>
+                                <span class="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 text-lg sm:text-2xl">✨</span>
                             </h1>
-                        </div>
-                        <div class="hidden sm:flex flex-col items-end">
-                            <div class="text-2xl sm:text-3xl font-black rotating-star mb-2">*</div>
-                            <span class="text-xs text-gray-500 rotate-90 origin-center whitespace-nowrap">PORTFOLIO
-                                2026</span>
-                        </div>
-                    </div>
-
-                    <div class="mb-6 sm:mb-8">
-                        <p
-                            class="text-lg sm:text-2xl lg:text-3xl font-light text-gray-700 h-10 sm:h-12 flex items-center">
-                            <span id="typewriter" class="font-medium"></span>
-                            <span class="blinking-cursor text-blue-500">|</span>
-                        </p>
-                    </div>
-
-                    <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-                        <div class="reveal space-y-6 sm:space-y-8">
-                            <p class="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed max-w-lg">
-                                A passionate <span class="font-semibold text-blue-600">AI & ML student</span> who
-                                thrives on creating
-                                <span class="font-semibold text-purple-600">end-to-end products</span> that develop
-                                sustainable and
-                                scalable <span class="font-semibold text-green-600">social and technical systems</span>
-                                to create meaningful impact.
+                            <p class="text-lg sm:text-2xl lg:text-3xl font-light text-gray-700 h-9 sm:h-12 flex items-center mb-5 sm:mb-6">
+                                <span id="typewriter" class="font-medium"></span>
+                                <span class="blinking-cursor text-blue-500">|</span>
+                            </p>
+                            <p class="text-base sm:text-lg text-gray-700 leading-relaxed max-w-lg mb-6">
+                                A passionate <span class="font-semibold text-blue-600">AI & ML student</span> who thrives on creating
+                                <span class="font-semibold text-purple-600">end-to-end products</span> that develop sustainable and
+                                scalable <span class="font-semibold text-green-600">social and technical systems</span> to create meaningful impact.
                             </p>
 
                             <!-- Key Stats -->
-                            <div class="grid grid-cols-3 gap-2 sm:gap-4 py-4 sm:py-6 border-t border-b border-gray-200">
+                            <div class="grid grid-cols-3 gap-2 sm:gap-4 py-4 sm:py-5 border-t border-b border-gray-200 mb-6 max-w-lg">
                                 <div class="text-center">
                                     <div class="text-xl sm:text-2xl font-bold text-blue-600">2+</div>
                                     <div class="text-xs text-gray-500 uppercase tracking-wide">Years Coding</div>
@@ -299,7 +281,8 @@
                             </div>
                         </div>
 
-                        <div class="reveal flex justify-center lg:justify-end mt-8 lg:mt-0"
+                        <!-- Right: photo (vertically centred against the intro to fill the space) -->
+                        <div class="reveal flex justify-center lg:justify-end mt-4 lg:mt-0"
                             style="transition-delay: 150ms;">
                             <div class="relative group w-full max-w-xs sm:max-w-sm">
                                 <div
@@ -323,13 +306,13 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Scroll Indicator -->
-                    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-                        <div class="flex flex-col items-center gap-2 text-gray-500">
-                            <span class="text-xs uppercase tracking-wide">Scroll to explore</span>
-                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
-                        </div>
+                <!-- Scroll Indicator (bottom centre) -->
+                <div class="hidden sm:flex absolute bottom-5 left-1/2 -translate-x-1/2 animate-bounce z-10">
+                    <div class="flex flex-col items-center gap-1 text-gray-500">
+                        <span class="text-xs uppercase tracking-wide">Scroll to explore</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4"></i>
                     </div>
                 </div>
             </section>
