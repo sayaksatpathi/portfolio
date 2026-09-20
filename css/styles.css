@@ -1027,3 +1027,91 @@ body.dark .ix-rail-dot.active { background: #60a5fa; box-shadow: 0 0 0 4px rgba(
     background: #fff;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
+
+/* ── Education timeline ─────────────────────────────────────────────────
+   Rail with accent dots + framed cards (per-entry --accent). */
+.edu-timeline { position: relative; padding-left: 34px; }
+.edu-timeline::before {
+    content: '';
+    position: absolute;
+    left: 11px; top: 10px; bottom: 10px;
+    width: 2px;
+    background: linear-gradient(180deg, #3b82f6, #22c55e, #a855f7);
+    opacity: .4;
+    border-radius: 2px;
+}
+.edu-item { position: relative; margin-bottom: 26px; }
+.edu-item:last-child { margin-bottom: 0; }
+.edu-item::before {
+    content: '';
+    position: absolute;
+    left: -29px; top: 28px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent);
+    transition: box-shadow .3s ease;
+}
+.edu-item:hover::before { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 30%, transparent); }
+.edu-card {
+    background: linear-gradient(180deg, #14161c, #0f1116);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid var(--accent);
+    border-radius: 16px;
+    padding: 20px 22px;
+    transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.edu-card:hover {
+    transform: translateX(4px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+    border-left-color: var(--accent);
+}
+.edu-head { display: flex; align-items: flex-start; gap: 14px; }
+.edu-ico {
+    width: 44px; height: 44px;
+    flex: 0 0 auto;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    color: var(--accent);
+}
+.edu-ico i { width: 22px; height: 22px; }
+.edu-heading { flex: 1; min-width: 0; }
+.edu-degree { font-size: 18px; font-weight: 800; color: #fff; line-height: 1.25; margin: 0; }
+.edu-inst {
+    font-size: 13.5px; color: var(--accent); font-weight: 600;
+    margin: 4px 0 0; display: flex; align-items: center; gap: 5px;
+}
+.edu-inst i { width: 13px; height: 13px; opacity: .8; }
+.edu-grade { flex: 0 0 auto; text-align: right; }
+.edu-grade-val { display: block; font-size: 25px; font-weight: 900; color: var(--accent); line-height: 1; letter-spacing: -.02em; }
+.edu-grade-max { font-size: 13px; font-weight: 700; opacity: .6; }
+.edu-grade-label { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .07em; color: #8b96a5; margin-top: 5px; white-space: nowrap; }
+.edu-sub {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+    margin: 15px 0; padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+.edu-date { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: #9aa4b2; }
+.edu-date i { width: 13px; height: 13px; }
+.edu-status {
+    font-size: 11px; font-weight: 700; color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    padding: 3px 10px; border-radius: 9999px;
+}
+.edu-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.edu-tags span {
+    font-size: 11.5px; color: #c7cdd6;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 4px 10px; border-radius: 7px;
+}
+@media (max-width: 480px) {
+    .edu-timeline { padding-left: 26px; }
+    .edu-item::before { left: -21px; }
+    .edu-head { flex-wrap: wrap; }
+    .edu-grade { text-align: left; width: 100%; order: 3; margin-top: 6px; }
+    .edu-grade-val { font-size: 22px; }
+}
