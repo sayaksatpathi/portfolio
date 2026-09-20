@@ -148,88 +148,46 @@ const skillCategories = [
 ];
 
 
-// Scroll animations and theme change
+// Header theme — decide nav/logo colour from whatever section is actually
+// painted just under the header. (The hero is position:sticky, so it is
+// always geometrically "in view"; an IntersectionObserver therefore keeps
+// forcing light mode and the nav turns dark-on-dark. Sampling the painted
+// element avoids that.)
 const mainNav = document.getElementById('main-nav');
 
-const observerOptions = {
-    root: null,
-    rootMargin: '-50px 0px -50px 0px',
-    threshold: 0.5
-};
-
-let currentSection = 'hero-section'; // Track current section
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-            const isDark = entry.target.classList.contains('bg-dark');
-            const sectionId = entry.target.id;
-            currentSection = sectionId;
-
-            if (isDark) {
-                // Dark sections - hide main nav, show white text
-                document.body.classList.add('dark');
-                header.classList.add('text-white');
-                header.classList.remove('text-gray-900');
-                menuBtn.classList.add('text-white', 'ball-style');
-                menuBtn.classList.remove('text-gray-900');
-                mainNav.classList.add('opacity-0', 'pointer-events-none');
-            } else {
-                // Light sections (hero and footer) - show nav with dark text
-                document.body.classList.remove('dark');
-                header.classList.remove('text-white');
-                header.classList.add('text-gray-900');
-                menuBtn.classList.remove('text-white', 'ball-style');
-                menuBtn.classList.add('text-gray-900');
-                mainNav.classList.remove('opacity-0', 'pointer-events-none');
+function updateHeaderTheme() {
+    const y = (header.offsetHeight || 80) + 14;
+    let dark = null;
+    for (const x of [24, window.innerWidth - 24, Math.round(window.innerWidth / 2)]) {
+        const el = document.elementFromPoint(x, y);
+        if (!el) continue;
+        let n = el;
+        while (n && n !== document.body) {
+            if (n.classList) {
+                if (n.classList.contains('bg-dark')) { dark = true; break; }
+                if (n.classList.contains('bg-light')) { dark = false; break; }
             }
-
-            // Special handling for hero section - always ensure nav is visible
-            if (sectionId === 'hero-section') {
-                setTimeout(() => {
-                    mainNav.classList.remove('opacity-0', 'pointer-events-none');
-                    header.classList.remove('text-white');
-                    header.classList.add('text-gray-900');
-                    menuBtn.classList.remove('text-white', 'ball-style');
-                    menuBtn.classList.add('text-gray-900');
-                }, 100);
-            }
+            n = n.parentElement;
         }
-    });
-}, observerOptions);
+        if (dark !== null) break;
+    }
+    if (dark === null) dark = (window.scrollY || 0) > window.innerHeight * 0.6;
 
-document.querySelectorAll('section').forEach(section => {
-    observer.observe(section);
-});
-
-// Initial state: ensure navigation is visible on hero section
-setTimeout(() => {
+    document.body.classList.toggle('dark', dark);
+    header.classList.toggle('text-white', dark);
+    header.classList.toggle('text-gray-900', !dark);
+    menuBtn.classList.toggle('text-white', dark);
+    menuBtn.classList.toggle('ball-style', dark);
+    menuBtn.classList.toggle('text-gray-900', !dark);
+    // The desktop nav stays visible on every section — only its colour changes.
     mainNav.classList.remove('opacity-0', 'pointer-events-none');
-    header.classList.add('text-gray-900');
-    header.classList.remove('text-white');
-    menuBtn.classList.add('text-gray-900');
-    menuBtn.classList.remove('text-white', 'ball-style');
-}, 100);
+}
 
-// Backup scroll listener to ensure hero section nav is always visible
-let scrollTimeout;
-window.addEventListener('scroll', () => {
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-        const heroSection = document.getElementById('hero-section');
-        const heroRect = heroSection.getBoundingClientRect();
-        const isHeroVisible = heroRect.top <= 100 && heroRect.bottom >= 100;
-
-        if (isHeroVisible && currentSection === 'hero-section') {
-            // Force show navigation on hero
-            mainNav.classList.remove('opacity-0', 'pointer-events-none');
-            header.classList.remove('text-white');
-            header.classList.add('text-gray-900');
-            menuBtn.classList.remove('text-white', 'ball-style');
-            menuBtn.classList.add('text-gray-900');
-        }
-    }, 50);
-}, { passive: true });
+window.addEventListener('scroll', updateHeaderTheme, { passive: true });
+window.addEventListener('resize', updateHeaderTheme, { passive: true });
+updateHeaderTheme();
+setTimeout(updateHeaderTheme, 200);
+setTimeout(updateHeaderTheme, 900);
 
 // Back to top button
 const backToTopButton = document.getElementById('back-to-top');
