@@ -268,6 +268,8 @@
             }
             /* Scroll cue is redundant on touch and overlapped the photo */
             #hero-section .animate-bounce { display: none !important; }
+            /* Keep hero content flowing from the top on phones */
+            #hero-section .container { justify-content: flex-start !important; }
         }
 
         /* ── GitHub activity chart: keep it inside its card ────────────────
@@ -277,6 +279,18 @@
            card stay full-width and the wrapper scroll the chart horizontally. */
         #activity-section .grid.gap-6 > .reveal { min-width: 0; }
         #github-chart-wrapper { min-width: 0; max-width: 100%; }
+
+        /* ── Hero vertical alignment ───────────────────────────────────────
+           The hero centres its content in one screen. On short or very wide
+           viewports the big headline makes that content taller than the
+           screen, and centred overflow pushed "HELLO, I'M" / "SAYAK" up under
+           the fixed header. "safe center" keeps the nice centring when it fits
+           but pins the content to the top (below the header) when it doesn't,
+           so it can never overlap the logo. */
+        #hero-section .container {
+            justify-content: center;
+            justify-content: safe center;
+        }
 
         /* Custom Cursor */
         #cursor {
