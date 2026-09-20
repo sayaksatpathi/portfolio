@@ -885,19 +885,3 @@ body.dark .ix-rail-dot.active { background: #60a5fa; box-shadow: 0 0 0 4px rgba(
 @media (prefers-reduced-motion: reduce) {
     .project-card.ix-anim, .ix-modal, .ix-toast { transition: none !important; }
 }
-
-/* ── Default page scale ────────────────────────────────────────────────
-   Render the site at 80% on desktop so the full page fits on screen
-   without visitors having to zoom out (their OS/browser scaling was
-   making it feel enlarged). Scoped to >=1024px: because zoom < 1 only
-   ever increases the effective CSS width, a min-width threshold can
-   never flip-flop. Phones and tablets are left at 100%. */
-@media (min-width: 1024px) {
-    html { zoom: 0.8; }
-    /* zoom scales vh-based heights down too, so 100vh only fills 80% of the
-       screen — the full-height hero left the dark section peeking through at
-       the bottom. Compensate the full-height/parallax values by 1/0.8 = 1.25
-       so the hero fills the real viewport again. */
-    #hero-section { height: 125vh; }
-    .hero-parallax-spacer { height: 250vh; }
-}
