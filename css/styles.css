@@ -894,4 +894,10 @@ body.dark .ix-rail-dot.active { background: #60a5fa; box-shadow: 0 0 0 4px rgba(
    never flip-flop. Phones and tablets are left at 100%. */
 @media (min-width: 1024px) {
     html { zoom: 0.8; }
+    /* zoom scales vh-based heights down too, so 100vh only fills 80% of the
+       screen — the full-height hero left the dark section peeking through at
+       the bottom. Compensate the full-height/parallax values by 1/0.8 = 1.25
+       so the hero fills the real viewport again. */
+    #hero-section { height: 125vh; }
+    .hero-parallax-spacer { height: 250vh; }
 }
