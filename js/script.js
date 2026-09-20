@@ -448,16 +448,16 @@ window.addEventListener('load', () => {
     const finalText = document.querySelector('.final-text');
     const typewriterElement = document.getElementById('typewriter');
 
-    // Show final text after a delay
+    // Show final text after a short delay (kept snappy — visitors came for the work)
     setTimeout(() => {
         if (finalText) finalText.style.opacity = '1';
         glitchLayers.forEach(l => l.style.display = 'none');
-    }, 2300);
+    }, 700);
 
     // Start wipe effect
     setTimeout(() => {
         if (preloaderWipe) preloaderWipe.style.height = '120%';
-    }, 2500);
+    }, 900);
 
     // Hide preloader and reveal site
     setTimeout(() => {
@@ -479,11 +479,11 @@ window.addEventListener('load', () => {
                 });
             });
         });
-    }, 3500);
+    }, 1300);
 
     setTimeout(() => {
         if (preloader) preloader.style.display = 'none';
-    }, 4500);
+    }, 1800);
 
     const skillsGrid = document.querySelector('.skills-grid');
     const glow = document.getElementById('skills-grid-glow');
