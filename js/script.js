@@ -74,41 +74,78 @@ if (menuHoverBg && !isTouchDevice) {
 }
 
 
-const skillsCategories = {
-    languages: [
-        { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/python/python-original.svg' },
-        { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/javascript/javascript-original.svg' },
-        { name: 'C++', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/cplusplus/cplusplus-original.svg' },
-        { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/java/java-original.svg' },
-        { name: 'C', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/c/c-original.svg' },
-        { name: 'PHP', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/php/php-original.svg' },
-        { name: 'Go', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/go/go-original.svg' },
-        { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/html5/html5-original.svg' },
-        { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/css3/css3-original.svg' }
-    ],
-    frameworks: [
-        { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/react/react-original.svg' },
-        { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nodejs/nodejs-original.svg' },
-        { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nextjs/nextjs-original.svg' },
-        { name: 'Flask', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/flask/flask-original.svg' },
-        { name: 'Streamlit', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/streamlit/streamlit-original.svg' },
-        { name: 'Bootstrap', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/bootstrap/bootstrap-original.svg' },
-        { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/tailwindcss/tailwindcss-plain.svg' },
-        { name: 'Redux', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/redux/redux-original.svg' },
-        { name: 'Material UI', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/materialui/materialui-original.svg' }
-    ],
-    tools: [
-        { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/mongodb/mongodb-original.svg' },
-        { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/mysql/mysql-original.svg' },
-        { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/firebase/firebase-plain.svg' },
-        { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/git/git-original.svg' },
-        { name: 'AWS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/amazonwebservices/amazonwebservices-original.svg' },
-        { name: 'Figma', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/figma/figma-original.svg' },
-        { name: 'Canva', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/canva/canva-original.svg' },
-        { name: 'Tableau', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/tableau/tableau-original.svg' },
-        { name: 'Wordpress', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/wordpress/wordpress-original.svg' }
-    ]
-};
+// Skill icons resolve from devicon; anything without an icon falls back to
+// a coloured initials tile automatically (see the render logic below).
+const dev = s => `https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/${s}.svg`;
+const skillCategories = [
+    {
+        title: 'Databases', icon: 'database', accent: 'purple', skills: [
+            { name: 'MySQL', icon: dev('mysql/mysql-original') },
+            { name: 'MongoDB', icon: dev('mongodb/mongodb-original') }
+        ]
+    },
+    {
+        title: 'Programming', icon: 'code', accent: 'blue', skills: [
+            { name: 'C++', icon: dev('cplusplus/cplusplus-original') },
+            { name: 'Python', icon: dev('python/python-original') },
+            { name: 'Java', icon: dev('java/java-original') },
+            { name: 'JavaScript', icon: dev('javascript/javascript-original') },
+            { name: 'HTML', icon: dev('html5/html5-original') },
+            { name: 'CSS', icon: dev('css3/css3-original') },
+            { name: 'Bash / Shell', icon: dev('bash/bash-original') }
+        ]
+    },
+    {
+        title: 'AI / ML / Computer Vision', icon: 'brain', accent: 'cyan', skills: [
+            { name: 'NumPy', icon: dev('numpy/numpy-original') },
+            { name: 'Pandas', icon: dev('pandas/pandas-original') },
+            { name: 'Scikit-learn', icon: dev('scikitlearn/scikitlearn-original') },
+            { name: 'TensorFlow', icon: dev('tensorflow/tensorflow-original') },
+            { name: 'Keras', icon: dev('keras/keras-original') },
+            { name: 'PyTorch', icon: dev('pytorch/pytorch-original') },
+            { name: 'OpenCV', icon: dev('opencv/opencv-original') },
+            { name: 'YOLO / Ultralytics' },
+            { name: 'CNN' },
+            { name: 'Computer Vision' },
+            { name: 'Object Detection' },
+            { name: 'Streamlit', icon: dev('streamlit/streamlit-original') }
+        ]
+    },
+    {
+        title: 'Web Development', icon: 'globe', accent: 'green', skills: [
+            { name: 'HTML5', icon: dev('html5/html5-original') },
+            { name: 'CSS3', icon: dev('css3/css3-original') },
+            { name: 'JavaScript', icon: dev('javascript/javascript-original') },
+            { name: 'Node.js', icon: dev('nodejs/nodejs-original') },
+            { name: 'React', icon: dev('react/react-original') },
+            { name: 'REST APIs' },
+            { name: 'WordPress', icon: dev('wordpress/wordpress-original') },
+            { name: 'Vercel', icon: dev('vercel/vercel-original') }
+        ]
+    },
+    {
+        title: 'Cloud / DevOps', icon: 'cloud', accent: 'blue', skills: [
+            { name: 'AWS / EC2', icon: dev('amazonwebservices/amazonwebservices-original-wordmark') },
+            { name: 'Git / GitHub', icon: dev('git/git-original') },
+            { name: 'Linux / Ubuntu', icon: dev('ubuntu/ubuntu-original') },
+            { name: 'WSL' },
+            { name: 'Shell scripting', icon: dev('bash/bash-original') },
+            { name: 'Ansible', icon: dev('ansible/ansible-original') },
+            { name: 'Jenkins', icon: dev('jenkins/jenkins-original') },
+            { name: 'Docker', icon: dev('docker/docker-original') },
+            { name: 'Kubernetes', icon: dev('kubernetes/kubernetes-plain') },
+            { name: 'npm / NVM', icon: dev('npm/npm-original-wordmark') }
+        ]
+    },
+    {
+        title: 'Data & Visualization', icon: 'bar-chart-3', accent: 'purple', skills: [
+            { name: 'Tableau' },
+            { name: 'Pandas', icon: dev('pandas/pandas-original') },
+            { name: 'Matplotlib', icon: dev('matplotlib/matplotlib-original') },
+            { name: 'Jupyter', icon: dev('jupyter/jupyter-original') }
+        ]
+    }
+];
 
 
 // Scroll animations and theme change
@@ -332,59 +369,48 @@ if (!isTouchDevice) magneticLinks.forEach(link => {
 
 // Preloader Logic & Initializations
 window.addEventListener('load', () => {
-    const languagesContainer = document.getElementById('languages-container');
-    const frameworksContainer = document.getElementById('frameworks-container');
-    const toolsContainer = document.getElementById('tools-container');
+    const skillsRoot = document.getElementById('skills-categories');
+    if (skillsRoot) {
+        const accents = {
+            blue:   { border: 'hover:border-blue-500',   iconText: 'text-blue-400',   title: 'group-hover:text-blue-400',   bg: 'bg-blue-500/20',   fbText: 'text-blue-300' },
+            green:  { border: 'hover:border-green-500',  iconText: 'text-green-400',  title: 'group-hover:text-green-400',  bg: 'bg-green-500/20',  fbText: 'text-green-300' },
+            purple: { border: 'hover:border-purple-500', iconText: 'text-purple-400', title: 'group-hover:text-purple-400', bg: 'bg-purple-500/20', fbText: 'text-purple-300' },
+            cyan:   { border: 'hover:border-cyan-500',   iconText: 'text-cyan-400',   title: 'group-hover:text-cyan-400',   bg: 'bg-cyan-500/20',   fbText: 'text-cyan-400' }
+        };
 
-    // Populate Languages
-    if (languagesContainer) {
-        skillsCategories.languages.forEach((skill, index) => {
-            const initials = skill.name.substring(0, 2).toUpperCase();
-            const skillCard = `
-                        <div class="skill-card reveal bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-blue-500 rounded-xl p-3 sm:p-4 lg:p-5 transition-all duration-300 group" style="transition-delay: ${index * 50}ms">
+        skillCategories.forEach((cat, ci) => {
+            const a = accents[cat.accent] || accents.blue;
+            const cards = cat.skills.map((skill, index) => {
+                const initials = skill.name.replace(/[^A-Za-z0-9]/g, '').substring(0, 2).toUpperCase();
+                const fb = `<div class="w-8 sm:w-10 lg:w-12 h-8 sm:h-10 lg:h-12 mb-2 sm:mb-3 mx-auto rounded-lg ${a.bg} items-center justify-center ${a.fbText} font-bold text-xs" style="display:${skill.icon ? 'none' : 'flex'}">${initials}</div>`;
+                const img = skill.icon
+                    ? `<img src="${skill.icon}" loading="lazy" class="w-8 sm:w-10 lg:w-12 h-8 sm:h-10 lg:h-12 mb-2 sm:mb-3 mx-auto group-hover:scale-110 transition-transform duration-300" alt="${skill.name} icon" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+                    : '';
+                return `
+                        <div class="skill-card reveal bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 ${a.border} rounded-xl p-3 sm:p-4 lg:p-5 transition-all duration-300 group" style="transition-delay: ${index * 40}ms">
                             <div class="text-center">
-                                <img src="${skill.icon}" loading="lazy" class="w-8 sm:w-10 lg:w-12 h-8 sm:h-10 lg:h-12 mb-2 sm:mb-3 mx-auto group-hover:scale-110 transition-transform duration-300" alt="${skill.name} icon" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                                <div style="display:none" class="w-8 sm:w-10 lg:w-12 h-8 sm:h-10 lg:h-12 mb-2 sm:mb-3 mx-auto rounded-lg bg-blue-500/30 items-center justify-center text-blue-300 font-bold text-xs">${initials}</div>
-                                <h4 class="font-bold text-white text-xs sm:text-sm lg:text-base group-hover:text-blue-400 transition-colors">${skill.name}</h4>
+                                ${img}${fb}
+                                <h4 class="font-bold text-white text-xs sm:text-sm lg:text-base ${a.title} transition-colors">${skill.name}</h4>
                             </div>
-                        </div>
-                    `;
-            languagesContainer.innerHTML += skillCard;
-        });
-    }
+                        </div>`;
+            }).join('');
 
-    // Populate Frameworks
-    if (frameworksContainer) {
-        skillsCategories.frameworks.forEach((skill, index) => {
-            const initials = skill.name.substring(0, 2).toUpperCase();
-            const skillCard = `
-                        <div class="skill-card reveal bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-green-500 rounded-xl p-3 sm:p-4 lg:p-5 transition-all duration-300 group" style="transition-delay: ${index * 50}ms">
-                            <div class="text-center">
-                                <img src="${skill.icon}" loading="lazy" class="w-8 sm:w-10 lg:w-12 h-8 sm:h-10 lg:h-12 mb-2 sm:mb-3 mx-auto group-hover:scale-110 transition-transform duration-300" alt="${skill.name} icon" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                                <div style="display:none" class="w-8 sm:w-10 lg:w-12 h-8 sm:h-10 lg:h-12 mb-2 sm:mb-3 mx-auto rounded-lg bg-green-500/30 items-center justify-center text-green-300 font-bold text-xs">${initials}</div>
-                                <h4 class="font-bold text-white text-xs sm:text-sm lg:text-base group-hover:text-green-400 transition-colors">${skill.name}</h4>
+            const block = `
+                        <div class="reveal" style="transition-delay: ${ci * 80}ms">
+                            <div class="flex items-center gap-3 mb-6">
+                                <div class="w-8 h-8 ${a.bg} rounded-lg flex items-center justify-center">
+                                    <i data-lucide="${cat.icon}" class="w-4 h-4 ${a.iconText}"></i>
+                                </div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-white">${cat.title}</h3>
                             </div>
-                        </div>
-                    `;
-            frameworksContainer.innerHTML += skillCard;
+                            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
+                                ${cards}
+                            </div>
+                        </div>`;
+            skillsRoot.insertAdjacentHTML('beforeend', block);
         });
-    }
 
-    // Populate Tools
-    if (toolsContainer) {
-        skillsCategories.tools.forEach((skill, index) => {
-            const initials = skill.name.substring(0, 2).toUpperCase();
-            const skillCard = `
-                        <div class="skill-card reveal bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-xl p-3 sm:p-4 lg:p-5 transition-all duration-300 group" style="transition-delay: ${index * 50}ms">
-                            <div class="text-center">
-                                <img src="${skill.icon}" loading="lazy" class="w-8 sm:w-10 lg:w-12 h-8 sm:h-10 lg:h-12 mb-2 sm:mb-3 mx-auto group-hover:scale-110 transition-transform duration-300" alt="${skill.name} icon" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                                <div style="display:none" class="w-8 sm:w-10 lg:w-12 h-8 sm:h-10 lg:h-12 mb-2 sm:mb-3 mx-auto rounded-lg bg-purple-500/30 items-center justify-center text-purple-300 font-bold text-xs">${initials}</div>
-                                <h4 class="font-bold text-white text-xs sm:text-sm lg:text-base group-hover:text-purple-400 transition-colors">${skill.name}</h4>
-                            </div>
-                        </div>
-                    `;
-            toolsContainer.innerHTML += skillCard;
-        });
+        try { lucide.createIcons(); } catch (e) { /* icons optional */ }
     }
 
     initialize3dCards('#skills-section .skill-card');
