@@ -146,8 +146,8 @@
 
         const sections = [
             ['hero-section', 'Home'], ['skills-section', 'Skills'], ['education-section', 'Education'],
-            ['projects-section', 'Projects'], ['activity-section', 'Activity'], ['about-section', 'About'],
-            ['contact-section', 'Contact']
+            ['certifications-section', 'Certificates'], ['projects-section', 'Projects'],
+            ['activity-section', 'Activity'], ['about-section', 'About'], ['contact-section', 'Contact']
         ].filter(([id]) => document.getElementById(id));
 
         const rail = document.createElement('div');
@@ -377,6 +377,7 @@
             { label: 'Projects', icon: 'folder-git-2', run: () => go('projects-section') },
             { label: 'Skills', icon: 'cpu', run: () => go('skills-section') },
             { label: 'Education', icon: 'graduation-cap', run: () => go('education-section') },
+            { label: 'Certifications', icon: 'badge-check', run: () => go('certifications-section') },
             { label: 'GitHub Activity', icon: 'activity', run: () => go('activity-section') },
             { label: 'About', icon: 'user', run: () => go('about-section') },
             { label: 'Contact', icon: 'mail', run: () => go('contact-section') },
