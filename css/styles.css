@@ -252,6 +252,32 @@
             }
         }
 
+        /* ── Mobile hero fix ──────────────────────────────────────────────
+           On phones the hero content is taller than one screen. Locking it to
+           a centered 100vh pushed the "SAYAK" headline up under the fixed
+           header and dropped the scroll cue on top of the photo. On mobile
+           there is no parallax, so let the hero flow from below the header and
+           grow to fit its content. */
+        @media (max-width: 767px) {
+            .hero-parallax-spacer { height: auto !important; }
+            #hero-section {
+                position: relative !important;
+                height: auto !important;
+                min-height: 100vh;
+                justify-content: flex-start !important;
+            }
+            /* Scroll cue is redundant on touch and overlapped the photo */
+            #hero-section .animate-bounce { display: none !important; }
+        }
+
+        /* ── GitHub activity chart: keep it inside its card ────────────────
+           The contribution SVG has a min-width of 420px. Because the card is a
+           grid item (min-width:auto), that width stretched the whole card past
+           the viewport on phones instead of scrolling. min-width:0 lets the
+           card stay full-width and the wrapper scroll the chart horizontally. */
+        #activity-section .grid.gap-6 > .reveal { min-width: 0; }
+        #github-chart-wrapper { min-width: 0; max-width: 100%; }
+
         /* Custom Cursor */
         #cursor {
             position: fixed;
