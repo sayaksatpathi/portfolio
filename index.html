@@ -1110,37 +1110,56 @@
         async function renderGitHubChart(year) {
             const container = document.getElementById('github-chart-container');
             const countEl = document.getElementById('gh-commit-count');
+            const subEl = document.querySelector('#activity-section h3 + p, #activity-section p.text-xs');
             if (!container) return;
+            const nowY = new Date().getFullYear();
+            // Current year => show the trailing 12 months (same window GitHub's
+            // profile graph uses). Past years => that full calendar year.
+            const rolling = (year === nowY);
             try {
-                const res = await fetch(`https://github-contributions-api.jogruber.de/v4/sayaksatpathi?y=${year}`);
-                const data = await res.json();
-                const contributions = data.contributions || [];
-                const total = data.total?.[year] || 0;
-                if (countEl) countEl.textContent = total + ' commits';
+                const api = y => fetch(`https://github-contributions-api.jogruber.de/v4/sayaksatpathi?y=${y}`).then(r => r.json());
+                let contributions;
+                if (rolling) {
+                    const [a, b] = await Promise.all([api(year), api(year - 1)]);
+                    contributions = [...(b.contributions || []), ...(a.contributions || [])];
+                } else {
+                    contributions = (await api(year)).contributions || [];
+                }
                 if (!contributions.length) throw new Error('no data');
 
                 const contribMap = {};
                 contributions.forEach(d => { contribMap[d.date] = d; });
 
-                const today = new Date(); today.setHours(0,0,0,0);
-                const startDate = new Date(`${year}-01-01`);
-                const endDate = new Date(`${year}-12-31`);
+                const today = new Date(); today.setHours(0, 0, 0, 0);
+                let startDate, endDate;
+                if (rolling) {
+                    endDate = new Date(today);
+                    startDate = new Date(today); startDate.setDate(today.getDate() - 364);
+                } else {
+                    startDate = new Date(`${year}-01-01`);
+                    endDate = new Date(`${year}-12-31`);
+                }
                 const firstSunday = new Date(startDate);
                 firstSunday.setDate(firstSunday.getDate() - firstSunday.getDay());
 
                 const weeks = [];
                 const cur = new Date(firstSunday);
+                let total = 0;
                 while (cur <= endDate) {
                     const week = [];
                     for (let d = 0; d < 7; d++) {
                         const ds = cur.toISOString().split('T')[0];
-                        const inYear = cur >= startDate && cur <= endDate;
+                        const inRange = cur >= startDate && cur <= endDate;
                         const isFuture = cur > today;
-                        week.push(inYear ? { date: ds, count: contribMap[ds]?.count || 0, level: contribMap[ds]?.level || 0, future: isFuture } : null);
+                        const count = contribMap[ds]?.count || 0;
+                        if (inRange && !isFuture) total += count;
+                        week.push(inRange ? { date: ds, count: count, level: contribMap[ds]?.level || 0, future: isFuture } : null);
                         cur.setDate(cur.getDate() + 1);
                     }
                     weeks.push(week);
                 }
+                if (countEl) countEl.textContent = total + ' contributions';
+                if (subEl) subEl.textContent = rolling ? 'Last 12 months' : (year + ' contributions');
 
                 const COLORS = ['#1e293b','#14532d','#166534','#16a34a','#4ade80'];
                 const FUTURE_COLOR = '#0f172a';
@@ -1201,8 +1220,6 @@
                     const b = e.target.closest('.ix-gh-year'); if (!b) return;
                     yearsEl.querySelectorAll('.ix-gh-year').forEach(x => x.classList.toggle('active', x === b));
                     renderGitHubChart(+b.dataset.year);
-                    const sub = document.querySelector('#activity-section h3 + p, #activity-section p.text-xs');
-                    if (sub) sub.textContent = b.dataset.year + ' contributions';
                 });
             }
             renderGitHubChart(nowY);
