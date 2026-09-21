@@ -1115,7 +1115,7 @@
             const nowY = new Date().getFullYear();
             // Current year => show the trailing 12 months (same window GitHub's
             // profile graph uses). Past years => that full calendar year.
-            const rolling = (year === nowY);
+            const rolling = false; // always show the full calendar year (Jan-Dec)
             try {
                 const api = y => fetch(`https://github-contributions-api.jogruber.de/v4/sayaksatpathi?y=${y}`).then(r => r.json());
                 let contributions;
