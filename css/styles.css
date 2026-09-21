@@ -1135,3 +1135,12 @@ body.dark .ix-rail-dot.active { background: #60a5fa; box-shadow: 0 0 0 4px rgba(
    "View all repositories" button fell back to display:inline (icon
    stacked above the text, button blown up). Define it explicitly. */
 .inline-flex { display: inline-flex; }
+
+/* Section headers: heading (left) + description (right) were split into two
+   equal columns, so the description sat far right with a big empty gap.
+   Size the heading to its content and let the description follow right after
+   it, tightening the gap consistently regardless of heading length. */
+@media (min-width: 1024px) {
+    .section-head { grid-template-columns: auto minmax(0, 1fr); column-gap: 3rem; }
+    .section-head > p:last-child { align-self: center; }
+}
