@@ -230,10 +230,12 @@ setInterval(updateTime, 1000);
 const flicker = document.getElementById('text-flicker');
 const placeholder = document.getElementById('text-placeholder');
 if (flicker && placeholder) {
+    // 'building' is omitted on purpose — the line already starts with the
+    // static word "Building", so flickering "building" read as a duplicate.
     const words = [
         { text: 'breaking', cls: 'text-red-500 line-through' },
         { text: 'fixing',   cls: 'text-green-400' },
-        { text: 'building', cls: 'text-blue-400' },
+        { text: 'shipping', cls: 'text-blue-400' },
     ];
     let current = 0;
 
