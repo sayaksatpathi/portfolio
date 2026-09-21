@@ -503,13 +503,15 @@
         };
         const aliases = { proj: 'projects', skill: 'skills', cv: 'resume', cls: 'clear', help: 'help', '?': 'help' };
 
-        const newInputLine = () => {
+        const newInputLine = (autofocus) => {
             const line = document.createElement('div');
             line.className = 'ix-term-line ix-term-inputline';
             line.innerHTML = prompt() + '<input class="ix-term-input" autocomplete="off" spellcheck="false" aria-label="terminal input">';
             body.appendChild(line);
             const input = line.querySelector('input');
-            input.focus();
+            // Only focus after the visitor interacts — and never let focus scroll
+            // the page (auto-focusing on load was scrolling the site to the terminal).
+            if (autofocus) input.focus({ preventScroll: true });
             input.addEventListener('keydown', e => {
                 if (e.key !== 'Enter') return;
                 const raw = input.value.trim();
@@ -517,12 +519,12 @@
                 // freeze this line
                 line.innerHTML = prompt() + '<span class="ix-term-cmd">' + (raw || '') + '</span>';
                 if (raw) { (cmds[cmd] || (() => print('command not found: <span class="ix-term-accent">' + raw + '</span> — type <span class="ix-term-cmd">help</span>')))(); }
-                newInputLine();
+                newInputLine(true);
             });
             body.scrollTop = body.scrollHeight;
         };
-        newInputLine();
-        body.addEventListener('click', () => { const i = body.querySelector('.ix-term-inputline input'); if (i) i.focus(); });
+        newInputLine(false);
+        body.addEventListener('click', () => { const i = body.querySelector('.ix-term-inputline input'); if (i) i.focus({ preventScroll: true }); });
 
         // observe reveal for the terminal block
         const io = new IntersectionObserver((ens, o) => ens.forEach(en => { if (en.isIntersecting) { wrap.classList.add('visible'); o.disconnect(); } }), { threshold: 0.05 });
