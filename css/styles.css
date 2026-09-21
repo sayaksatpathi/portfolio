@@ -1130,3 +1130,8 @@ body.dark .ix-rail-dot.active { background: #60a5fa; box-shadow: 0 0 0 4px rgba(
    which put the orbs in the layout and added ~600px of empty height above
    each dark section's content. Restore their intended absolute positioning. */
 .bg-dark > .absolute { position: absolute; }
+
+/* The prebuilt Tailwind build doesn't apply .inline-flex, so the
+   "View all repositories" button fell back to display:inline (icon
+   stacked above the text, button blown up). Define it explicitly. */
+.inline-flex { display: inline-flex; }
