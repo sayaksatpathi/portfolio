@@ -1124,3 +1124,9 @@ body.dark .ix-rail-dot.active { background: #60a5fa; box-shadow: 0 0 0 4px rgba(
 #header.text-white a { color: #ffffff; }
 #header.text-gray-900,
 #header.text-gray-900 a { color: #111827; }
+
+/* Decorative blur orbs in dark sections must stay out of flow. The
+   `.bg-dark > *` rule above forces every direct child to position:relative,
+   which put the orbs in the layout and added ~600px of empty height above
+   each dark section's content. Restore their intended absolute positioning. */
+.bg-dark > .absolute { position: absolute; }
