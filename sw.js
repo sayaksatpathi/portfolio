@@ -1,4 +1,4 @@
-const CACHE = 'sayak-portfolio-v27';
+const CACHE = 'sayak-portfolio-v28';
 const ASSETS = [
     '/',
     '/index.html',
