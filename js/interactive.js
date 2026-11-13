@@ -210,7 +210,7 @@
         document.body.appendChild(bar);
 
         const sections = [
-            ['hero-section', 'Home'], ['skills-section', 'Skills'], ['education-section', 'Education'],
+            ['hero-section', 'Home'], ['skills-section', 'Skills'], ['education-section', 'Education'], ['experience-section', 'Experience'],
             ['certifications-section', 'Certificates'], ['projects-section', 'Projects'], ['opensource-section', 'Open Source'],
             ['activity-section', 'Activity'], ['about-section', 'About'], ['contact-section', 'Contact']
         ].filter(([id]) => document.getElementById(id));

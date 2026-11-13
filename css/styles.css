@@ -1158,3 +1158,4 @@ body.dark .ix-rail-dot.active { background: #60a5fa; box-shadow: 0 0 0 4px rgba(
 .p-5{padding:calc(var(--spacing) * 5)}
 .block{display:block}
 .inline-flex{display:inline-flex}
+@media (min-width: 1024px){.lg\:flex{display:flex}}

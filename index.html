@@ -137,7 +137,7 @@
     <link rel="stylesheet" href="css/tailwind.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="js/lucide.min.js"></script>
-    <link rel="stylesheet" href="css/styles.css?v=26">
+    <link rel="stylesheet" href="css/styles.css?v=27">
 </head>
 
 <body class="bg-light overflow-hidden">
@@ -179,9 +179,10 @@
     <header id="header" class="fixed top-0 left-0 right-0 p-4 sm:p-8 z-50 transition-colors duration-500">
         <div class="container mx-auto flex justify-between items-center">
             <a href="#" class="font-bold text-lg tracking-wider">SAYAK®</a>
-            <nav id="main-nav" class="hidden md:flex items-center gap-6 text-sm transition-opacity duration-300">
+            <nav id="main-nav" class="hidden lg:flex items-center gap-6 text-sm transition-opacity duration-300">
                 <a href="#skills-section" class="hover:text-gray-500 transition-colors">Skills</a>
                 <a href="#education-section" class="hover:text-gray-500 transition-colors">Education</a>
+                <a href="#experience-section" class="hover:text-gray-500 transition-colors">Experience</a>
                 <a href="#certifications-section" class="hover:text-gray-500 transition-colors">Certifications</a>
                 <a href="#projects-section" class="hover:text-gray-500 transition-colors">Projects</a>
                 <a href="#opensource-section" class="hover:text-gray-500 transition-colors">Open Source</a>
@@ -462,6 +463,99 @@
                                         </div>
                                         <div class="edu-tags">
                                             <span>Mathematics</span><span>Science</span><span>English</span><span>Social Studies</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="experience-section" class="section section-compact bg-dark px-4 sm:px-6 lg:px-8">
+                        <div class="container mx-auto">
+                            <div class="section-head grid lg:grid-cols-2 gap-6 lg:gap-8 items-center mb-12 lg:mb-16">
+                                <div class="reveal">
+                                    <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter">EXPERIENCE /</h2>
+                                    <p class="text-xs sm:text-sm text-gray-400 mt-2">( WORK &amp; ACHIEVEMENTS )</p>
+                                </div>
+                                <p class="text-sm sm:text-base text-gray-300 max-w-md reveal" style="transition-delay: 150ms;">Where I have shipped work for others, and how my projects have held up in competition.</p>
+                            </div>
+
+                            <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
+                                <!-- Work -->
+                                <div class="reveal space-y-4">
+                                    <p class="text-xs text-gray-400 uppercase tracking-wide font-medium">Work</p>
+
+                                    <div class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-cyan-500 rounded-2xl p-6 transition-all duration-500">
+                                        <div class="flex items-start justify-between gap-3 mb-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-10 h-10 bg-cyan-500/20 rounded-xl flex items-center justify-center"><i data-lucide="briefcase" class="w-4 h-4 text-cyan-400"></i></div>
+                                                <div>
+                                                    <h3 class="text-lg sm:text-xl font-bold text-white">Web Developer Intern</h3>
+                                                    <p class="text-sm text-gray-400">HZ IT Company &middot; Remote</p>
+                                                </div>
+                                            </div>
+                                            <span class="text-xs text-gray-400 uppercase tracking-wide">Jun &ndash; Jul 2026</span>
+                                        </div>
+                                        <div class="space-y-2 text-sm text-gray-300 leading-relaxed">
+                                            <p>&bull; Built an IT service-request and contact-management portal end to end: React + Vite client, Node.js/Express REST API.</p>
+                                            <p>&bull; Implemented CRUD for requests, services and projects, a contact form, and a stats endpoint for the admin dashboard.</p>
+                                        </div>
+                                        <div class="flex flex-wrap gap-2 mt-4">
+                                            <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded text-xs">React</span>
+                                            <span class="bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded text-xs">Node.js</span>
+                                            <span class="bg-blue-500/20 text-blue-300 px-2 py-1 rounded text-xs">Express</span>
+                                            <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs">REST APIs</span>
+                                        </div>
+                                    </div>
+
+                                    <a href="#opensource-section" class="block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-6 transition-all duration-500">
+                                        <div class="flex items-start justify-between gap-3 mb-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-10 h-10 bg-purple-500/20 rounded-xl flex items-center justify-center"><i data-lucide="git-merge" class="w-4 h-4 text-purple-400"></i></div>
+                                                <div>
+                                                    <h3 class="text-lg sm:text-xl font-bold text-white">Open Source Contributor</h3>
+                                                    <p class="text-sm text-gray-400">MLflow &middot; Ultralytics &middot; Kubernetes &middot; AWS</p>
+                                                </div>
+                                            </div>
+                                            <span class="text-xs text-gray-400 uppercase tracking-wide">2026</span>
+                                        </div>
+                                        <p class="text-sm text-gray-300 leading-relaxed">&bull; 7 pull requests merged upstream and 6 in review at KServe and Kubeflow &mdash; bug fixes in ML-platform, MLOps and cloud tooling.</p>
+                                    </a>
+                                </div>
+
+                                <!-- Achievements -->
+                                <div class="reveal space-y-4" style="transition-delay: 150ms;">
+                                    <p class="text-xs text-gray-400 uppercase tracking-wide font-medium">Achievements</p>
+
+                                    <div class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-cyan-500 rounded-2xl p-6 transition-all duration-500">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-10 h-10 bg-yellow-500/20 rounded-xl flex items-center justify-center"><i data-lucide="trophy" class="w-4 h-4 text-yellow-300"></i></div>
+                                            <div>
+                                                <h3 class="text-lg font-bold text-white">ELCIA Next-Gen Hackathon</h3>
+                                                <p class="text-sm text-yellow-300 font-medium">2nd Runner-Up &middot; top 3 of 180+ teams &middot; 2026</p>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-300 leading-relaxed">With team AeroMinds: a fine-tuned YOLOv8 app that detects illegal dumping in drone footage and scores its severity.</p>
+                                    </div>
+
+                                    <div class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-cyan-500 rounded-2xl p-6 transition-all duration-500">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-10 h-10 bg-cyan-500/20 rounded-xl flex items-center justify-center"><i data-lucide="award" class="w-4 h-4 text-cyan-400"></i></div>
+                                            <div>
+                                                <h3 class="text-lg font-bold text-white">Smart India Hackathon 2026</h3>
+                                                <p class="text-sm text-cyan-400 font-medium">Institute Round &middot; Rank 7 &middot; advancing</p>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-300 leading-relaxed">With Project Prahari: edge AI that adds detection, tracking and ANPR to existing CCTV, running offline.</p>
+                                    </div>
+
+                                    <div class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-cyan-500 rounded-2xl p-6 transition-all duration-500">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-10 h-10 bg-green-500/20 rounded-xl flex items-center justify-center"><i data-lucide="flag" class="w-4 h-4 text-green-400"></i></div>
+                                            <div>
+                                                <h3 class="text-lg font-bold text-white">Adobe University Hackathon</h3>
+                                                <p class="text-sm text-green-400 font-medium">Unstop &middot; cleared Round 1 &middot; 2026</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1303,6 +1397,7 @@
             <a href="#hero-section" class="overlay-link">Home</a>
             <a href="#skills-section" class="overlay-link">Skills</a>
             <a href="#education-section" class="overlay-link">Education</a>
+            <a href="#experience-section" class="overlay-link">Experience</a>
             <a href="#certifications-section" class="overlay-link">Certifications</a>
             <a href="#projects-section" class="overlay-link">Projects</a>
             <a href="#opensource-section" class="overlay-link">Open Source</a>
@@ -1323,8 +1418,8 @@
             </div>
         </div>
     </div>
-    <script src="js/script.js?v=25"></script>
-    <script src="js/interactive.js?v=25"></script>
+    <script src="js/script.js?v=26"></script>
+    <script src="js/interactive.js?v=26"></script>
     <script>
         // Register Service Worker for offline support & always-on caching
         if ('serviceWorker' in navigator) {
