@@ -1155,3 +1155,6 @@ body.dark .ix-rail-dot.active { background: #60a5fa; box-shadow: 0 0 0 4px rgba(
 .hover\:border-gray-500:hover{border-color:var(--color-gray-500)}
 .truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @media (min-width: 1024px){.lg\:gap-6{gap:calc(var(--spacing) * 6)}}
+.p-5{padding:calc(var(--spacing) * 5)}
+.block{display:block}
+.inline-flex{display:inline-flex}
