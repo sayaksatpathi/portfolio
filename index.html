@@ -137,7 +137,7 @@
     <link rel="stylesheet" href="css/tailwind.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="js/lucide.min.js"></script>
-    <link rel="stylesheet" href="css/styles.css?v=24">
+    <link rel="stylesheet" href="css/styles.css?v=25">
 </head>
 
 <body class="bg-light overflow-hidden">
@@ -184,6 +184,7 @@
                 <a href="#education-section" class="hover:text-gray-500 transition-colors">Education</a>
                 <a href="#certifications-section" class="hover:text-gray-500 transition-colors">Certifications</a>
                 <a href="#projects-section" class="hover:text-gray-500 transition-colors">Projects</a>
+                <a href="#opensource-section" class="hover:text-gray-500 transition-colors">Open Source</a>
                 <a href="#activity-section" class="hover:text-gray-500 transition-colors">Activity</a>
                 <a href="#about-section" class="hover:text-gray-500 transition-colors">About</a>
                 <a href="#contact-section" class="hover:text-gray-500 transition-colors">Contact</a>
@@ -579,12 +580,138 @@
                                     <p class="text-xs sm:text-sm text-gray-400 mt-2">( SELECTED WORK )</p>
                                 </div>
                                 <p class="text-sm sm:text-base text-gray-300 max-w-md reveal"
-                                    style="transition-delay: 150ms;">A collection of my projects, showcasing my skills
-                                    in creating web applications and solving problems.</p>
+                                    style="transition-delay: 150ms;">AI, data and full-stack work I have built and shipped
+                                    &mdash; from RAG and LLM agents to computer vision, supply-chain software and DevSecOps.</p>
                             </div>
 
                             <!-- Project Grid -->
                             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                                <!-- RAGBench -->
+                                <div class="project-card reveal group bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-cyan-500 transition-all duration-500">
+                                    <div class="relative h-48 bg-gradient-to-br from-cyan-500/20 to-gray-900 flex items-center justify-center overflow-hidden">
+                                        <i data-lucide="database-zap" class="w-16 h-16 text-cyan-400 group-hover:scale-110 transition-transform duration-700"></i>
+                                        <div class="absolute top-4 right-4"><span class="bg-cyan-500 text-black px-3 py-1 rounded-full text-xs font-bold">AI/ML</span></div>
+                                    </div>
+                                    <div class="p-5 sm:p-6">
+                                        <h3 class="text-lg sm:text-xl font-bold mb-2 text-white group-hover:text-cyan-400 transition-colors">RAGBench</h3>
+                                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">A RAG platform and evaluation harness: BM25, dense and hybrid retrieval with cited, grounded answers, abstention, and baseline-gated configs.</p>
+                                        <div class="flex flex-wrap gap-2 mb-4">
+                                            <span class="bg-blue-500/20 text-blue-300 px-2 py-1 rounded text-xs">Python</span>
+                                            <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded text-xs">FastAPI</span>
+                                            <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs">RAG</span>
+                                            <span class="bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded text-xs">Evaluation</span>
+                                        </div>
+                                        <div class="flex items-center gap-3">
+                                            <a href="https://github.com/sayaksatpathi/RAGBench" target="_blank" rel="noopener noreferrer" class="flex-1 border border-gray-500 hover:border-white hover:bg-white/10 px-4 py-2 rounded-lg text-sm text-center transition-all duration-300 flex items-center justify-center gap-2"><i data-lucide="github" class="w-4 h-4"></i> View Code</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- AI Trade Advisor -->
+                                <div class="project-card reveal group bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-purple-500 transition-all duration-500">
+                                    <div class="relative h-48 bg-gradient-to-br from-purple-500/20 to-gray-900 flex items-center justify-center overflow-hidden">
+                                        <i data-lucide="bot" class="w-16 h-16 text-purple-400 group-hover:scale-110 transition-transform duration-700"></i>
+                                        <div class="absolute top-4 right-4"><span class="bg-cyan-500 text-black px-3 py-1 rounded-full text-xs font-bold">AI/ML</span></div>
+                                    </div>
+                                    <div class="p-5 sm:p-6">
+                                        <h3 class="text-lg sm:text-xl font-bold mb-2 text-white group-hover:text-purple-400 transition-colors">AI Trade Advisor</h3>
+                                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">A multi-agent LLM system where analyst, bull/bear, trader and risk-manager agents debate each idea while code enforces hard risk limits.</p>
+                                        <div class="flex flex-wrap gap-2 mb-4">
+                                            <span class="bg-blue-500/20 text-blue-300 px-2 py-1 rounded text-xs">Python</span>
+                                            <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded text-xs">LLM Agents</span>
+                                            <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs">Claude</span>
+                                            <span class="bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded text-xs">Ollama</span>
+                                        </div>
+                                        <div class="flex items-center gap-3">
+                                            <a href="https://github.com/sayaksatpathi/ai-trader" target="_blank" rel="noopener noreferrer" class="flex-1 border border-gray-500 hover:border-white hover:bg-white/10 px-4 py-2 rounded-lg text-sm text-center transition-all duration-300 flex items-center justify-center gap-2"><i data-lucide="github" class="w-4 h-4"></i> View Code</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- AeroMinds -->
+                                <div class="project-card reveal group bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-green-500 transition-all duration-500">
+                                    <div class="relative h-48 bg-gradient-to-br from-green-500/20 to-gray-900 flex items-center justify-center overflow-hidden">
+                                        <i data-lucide="drone" class="w-16 h-16 text-green-400 group-hover:scale-110 transition-transform duration-700"></i>
+                                        <div class="absolute top-4 right-4"><span class="bg-cyan-500 text-black px-3 py-1 rounded-full text-xs font-bold">AI/ML</span></div>
+                                    </div>
+                                    <div class="p-5 sm:p-6">
+                                        <h3 class="text-lg sm:text-xl font-bold mb-2 text-white group-hover:text-green-400 transition-colors">AeroMinds</h3>
+                                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">2nd Runner-Up, ELCIA Next-Gen Hackathon (180+ teams). Fine-tuned YOLOv8 that finds illegal dumping in drone footage and scores severity.</p>
+                                        <div class="flex flex-wrap gap-2 mb-4">
+                                            <span class="bg-blue-500/20 text-blue-300 px-2 py-1 rounded text-xs">PyTorch</span>
+                                            <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded text-xs">YOLOv8</span>
+                                            <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs">Streamlit</span>
+                                            <span class="bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded text-xs">Docker</span>
+                                        </div>
+                                        <div class="flex items-center gap-3">
+                                            <a href="https://github.com/sayaksatpathi/AeroMinds" target="_blank" rel="noopener noreferrer" class="flex-1 border border-gray-500 hover:border-white hover:bg-white/10 px-4 py-2 rounded-lg text-sm text-center transition-all duration-300 flex items-center justify-center gap-2"><i data-lucide="github" class="w-4 h-4"></i> View Code</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Prahari -->
+                                <div class="project-card reveal group bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-500">
+                                    <div class="relative h-48 bg-gradient-to-br from-blue-500/20 to-gray-900 flex items-center justify-center overflow-hidden">
+                                        <i data-lucide="cctv" class="w-16 h-16 text-blue-400 group-hover:scale-110 transition-transform duration-700"></i>
+                                        <div class="absolute top-4 right-4"><span class="bg-cyan-500 text-black px-3 py-1 rounded-full text-xs font-bold">AI/ML</span></div>
+                                    </div>
+                                    <div class="p-5 sm:p-6">
+                                        <h3 class="text-lg sm:text-xl font-bold mb-2 text-white group-hover:text-blue-400 transition-colors">Prahari</h3>
+                                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">Edge AI for existing CCTV (SIH 2026): offline detection, tracking and ANPR, self-calibrating cameras and an alert governor.</p>
+                                        <div class="flex flex-wrap gap-2 mb-4">
+                                            <span class="bg-blue-500/20 text-blue-300 px-2 py-1 rounded text-xs">Python</span>
+                                            <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded text-xs">OpenCV</span>
+                                            <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs">FastAPI</span>
+                                            <span class="bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded text-xs">Edge AI</span>
+                                        </div>
+                                        <div class="flex items-center gap-3">
+                                            <a href="https://github.com/sayaksatpathi/PRAHARi" target="_blank" rel="noopener noreferrer" class="flex-1 border border-gray-500 hover:border-white hover:bg-white/10 px-4 py-2 rounded-lg text-sm text-center transition-all duration-300 flex items-center justify-center gap-2"><i data-lucide="github" class="w-4 h-4"></i> View Code</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- SAKSHYA -->
+                                <div class="project-card reveal group bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-purple-500 transition-all duration-500">
+                                    <div class="relative h-48 bg-gradient-to-br from-purple-500/20 to-gray-900 flex items-center justify-center overflow-hidden">
+                                        <i data-lucide="fingerprint" class="w-16 h-16 text-purple-400 group-hover:scale-110 transition-transform duration-700"></i>
+                                        <div class="absolute top-4 right-4"><span class="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">Security</span></div>
+                                    </div>
+                                    <div class="p-5 sm:p-6">
+                                        <h3 class="text-lg sm:text-xl font-bold mb-2 text-white group-hover:text-purple-400 transition-colors">SAKSHYA</h3>
+                                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">Vendor-agnostic CCTV forensic platform: offline ingestion, AI triage, deleted-clip recovery and tamper-evident SHA-256 custody.</p>
+                                        <div class="flex flex-wrap gap-2 mb-4">
+                                            <span class="bg-blue-500/20 text-blue-300 px-2 py-1 rounded text-xs">FastAPI</span>
+                                            <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded text-xs">React</span>
+                                            <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs">Forensics</span>
+                                            <span class="bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded text-xs">Docker</span>
+                                        </div>
+                                        <div class="flex items-center gap-3">
+                                            <a href="https://github.com/sayaksatpathi/SAKSHYA" target="_blank" rel="noopener noreferrer" class="flex-1 border border-gray-500 hover:border-white hover:bg-white/10 px-4 py-2 rounded-lg text-sm text-center transition-all duration-300 flex items-center justify-center gap-2"><i data-lucide="github" class="w-4 h-4"></i> View Code</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- OpsForge -->
+                                <div class="project-card reveal group bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-green-500 transition-all duration-500">
+                                    <div class="relative h-48 bg-gradient-to-br from-green-500/20 to-gray-900 flex items-center justify-center overflow-hidden">
+                                        <i data-lucide="server-cog" class="w-16 h-16 text-green-400 group-hover:scale-110 transition-transform duration-700"></i>
+                                        <div class="absolute top-4 right-4"><span class="bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold">DevOps</span></div>
+                                    </div>
+                                    <div class="p-5 sm:p-6">
+                                        <h3 class="text-lg sm:text-xl font-bold mb-2 text-white group-hover:text-green-400 transition-colors">OpsForge</h3>
+                                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">DevSecOps &amp; SRE platform: tests, scans, signs and GitOps-deploys services on Kubernetes with SLO burn-rate alerts and tracing.</p>
+                                        <div class="flex flex-wrap gap-2 mb-4">
+                                            <span class="bg-blue-500/20 text-blue-300 px-2 py-1 rounded text-xs">Kubernetes</span>
+                                            <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded text-xs">Terraform</span>
+                                            <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs">Prometheus</span>
+                                            <span class="bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded text-xs">CI/CD</span>
+                                        </div>
+                                        <div class="flex items-center gap-3">
+                                            <a href="https://github.com/sayaksatpathi/opsforge-platform" target="_blank" rel="noopener noreferrer" class="flex-1 border border-gray-500 hover:border-white hover:bg-white/10 px-4 py-2 rounded-lg text-sm text-center transition-all duration-300 flex items-center justify-center gap-2"><i data-lucide="github" class="w-4 h-4"></i> View Code</a>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!-- CyberShield AI -->
                                 <div class="project-card reveal group bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-cyan-500 transition-all duration-500">
                                     <div class="relative overflow-hidden">
@@ -683,10 +810,10 @@
                                     </div>
                                     <div class="p-5 sm:p-6">
                                         <h3 class="text-lg sm:text-xl font-bold mb-2 text-white group-hover:text-cyan-400 transition-colors">Sayak Traders</h3>
-                                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">A distributor-management system for an FMCG trading business, covering inventory, orders and reporting.</p>
+                                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">A supply-chain ERP for FMCG distributors: inventory with reorder-point alerts, orders, credit, gross profit by retailer and PDF reports.</p>
                                         <div class="flex flex-wrap gap-2 mb-4">
-                                            <span class="bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded text-xs">JavaScript</span>
-                                            <span class="bg-blue-500/20 text-blue-300 px-2 py-1 rounded text-xs">Web</span>
+                                            <span class="bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded text-xs">Node.js</span>
+                                            <span class="bg-blue-500/20 text-blue-300 px-2 py-1 rounded text-xs">SQL</span>
                                             <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded text-xs">Business</span>
                                         </div>
                                         <div class="flex items-center gap-3">
@@ -766,6 +893,126 @@
                         </div>
                     </section>
 
+                    <section id="opensource-section" class="section section-compact bg-dark px-4 sm:px-6 lg:px-8">
+                        <div class="container mx-auto">
+                            <div class="section-head grid lg:grid-cols-2 gap-6 lg:gap-8 items-center mb-12 lg:mb-16">
+                                <div class="reveal">
+                                    <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter">OPEN SOURCE /</h2>
+                                    <p class="text-xs sm:text-sm text-gray-400 mt-2">( 7 MERGED &middot; 6 IN REVIEW )</p>
+                                </div>
+                                <p class="text-sm sm:text-base text-gray-300 max-w-md reveal" style="transition-delay: 150ms;">Bug fixes contributed upstream to ML-platform, MLOps and cloud projects &mdash; including MLflow, Ultralytics, Kubernetes, AWS cfn-lint, KServe and Kubeflow.</p>
+                            </div>
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                                <a href="https://github.com/mlflow/mlflow/pull/26807" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">mlflow/mlflow</span>
+                                        <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-merge" class="w-3 h-3"></i> Merged</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">Fix format_prompt replacing placeholders that appear inside variable values <span class="text-gray-500">#26807</span></p>
+                                </a>
+
+                                <a href="https://github.com/mlflow/mlflow/pull/27008" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">mlflow/mlflow</span>
+                                        <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-merge" class="w-3 h-3"></i> Merged</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">Fix model config loading to always use UTF-8 encoding <span class="text-gray-500">#27008</span></p>
+                                </a>
+
+                                <a href="https://github.com/ultralytics/ultralytics/pull/26701" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">ultralytics/ultralytics</span>
+                                        <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-merge" class="w-3 h-3"></i> Merged</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">Skip torch.compile on CUDA when Triton is unavailable <span class="text-gray-500">#26701</span></p>
+                                </a>
+
+                                <a href="https://github.com/kubernetes-client/python/pull/2745" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">kubernetes-client/python</span>
+                                        <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-merge" class="w-3 h-3"></i> Merged</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">Relax the certifi lower bound and stop Dependabot raising lower bounds <span class="text-gray-500">#2745</span></p>
+                                </a>
+
+                                <a href="https://github.com/aws-cloudformation/cfn-lint/pull/4765" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">aws-cloudformation/cfn-lint</span>
+                                        <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-merge" class="w-3 h-3"></i> Merged</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">Check the length of a template Description that mentions a dynamic reference <span class="text-gray-500">#4765</span></p>
+                                </a>
+
+                                <a href="https://github.com/aws-cloudformation/cfn-lint/pull/4763" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">aws-cloudformation/cfn-lint</span>
+                                        <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-merge" class="w-3 h-3"></i> Merged</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">Validate --registry-schemas types against their schema again <span class="text-gray-500">#4763</span></p>
+                                </a>
+
+                                <a href="https://github.com/cloud-custodian/cloud-custodian/pull/11215" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">cloud-custodian/cloud-custodian</span>
+                                        <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-merge" class="w-3 h-3"></i> Merged</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">Skip ROLLBACK_COMPLETE stacks in CloudFormation tag actions <span class="text-gray-500">#11215</span></p>
+                                </a>
+
+                                <a href="https://github.com/kserve/kserve/pull/6521" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-gray-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">kserve/kserve</span>
+                                        <span class="bg-gray-600/40 text-gray-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-pull-request" class="w-3 h-3"></i> In review</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">Honor response-level use_binary_outputs for requested outputs <span class="text-gray-500">#6521</span></p>
+                                </a>
+
+                                <a href="https://github.com/kserve/kserve/pull/6407" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-gray-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">kserve/kserve</span>
+                                        <span class="bg-gray-600/40 text-gray-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-pull-request" class="w-3 h-3"></i> In review</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">Read raw tensor data in InferRequest.as_dataframe() <span class="text-gray-500">#6407</span></p>
+                                </a>
+
+                                <a href="https://github.com/kserve/kserve/pull/6405" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-gray-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">kserve/kserve</span>
+                                        <span class="bg-gray-600/40 text-gray-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-pull-request" class="w-3 h-3"></i> In review</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">Make InferInput.as_string() work for REST and gRPC inputs <span class="text-gray-500">#6405</span></p>
+                                </a>
+
+                                <a href="https://github.com/kserve/kserve/pull/6414" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-gray-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">kserve/kserve</span>
+                                        <span class="bg-gray-600/40 text-gray-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-pull-request" class="w-3 h-3"></i> In review</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">Stop returning request headers from the v1 explain endpoint <span class="text-gray-500">#6414</span></p>
+                                </a>
+
+                                <a href="https://github.com/kubeflow/docs-agent/pull/283" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-gray-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">kubeflow/docs-agent</span>
+                                        <span class="bg-gray-600/40 text-gray-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-pull-request" class="w-3 h-3"></i> In review</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">Keep compressor budgets non-negative and within max_chars <span class="text-gray-500">#283</span></p>
+                                </a>
+
+                                <a href="https://github.com/kubeflow/docs-agent/pull/285" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-gray-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">kubeflow/docs-agent</span>
+                                        <span class="bg-gray-600/40 text-gray-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-pull-request" class="w-3 h-3"></i> In review</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">Don&#x27;t duplicate the first node&#x27;s decorator in the module header <span class="text-gray-500">#285</span></p>
+                                </a>
+                            </div>
+                            <div class="text-center mt-12 reveal">
+                                <a href="https://github.com/pulls?q=is%3Apr+author%3Asayaksatpathi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg text-sm transition-colors duration-300"><i data-lucide="git-pull-request" class="w-4 h-4"></i> All pull requests</a>
+                            </div>
+                        </div>
+                    </section>
+
                     <section id="activity-section" class="section section-compact bg-dark px-4 sm:px-8">
                         <div class="container mx-auto">
                             <div class="section-head grid lg:grid-cols-2 gap-6 lg:gap-8 items-center mb-12 lg:mb-16">
@@ -823,8 +1070,8 @@
                                     <div class="text-xs text-gray-400 uppercase tracking-wide">Technologies</div>
                                 </div>
                                 <div class="bg-gray-800/30 rounded-xl p-3 sm:p-4 text-center">
-                                    <div class="text-xl sm:text-2xl font-bold text-blue-400">24/7</div>
-                                    <div class="text-xs text-gray-400 uppercase tracking-wide">Learning Mode</div>
+                                    <div class="text-xl sm:text-2xl font-bold text-blue-400">7</div>
+                                    <div class="text-xs text-gray-400 uppercase tracking-wide">Merged OSS PRs</div>
                                 </div>
                             </div>
                         </div>
@@ -1058,6 +1305,7 @@
             <a href="#education-section" class="overlay-link">Education</a>
             <a href="#certifications-section" class="overlay-link">Certifications</a>
             <a href="#projects-section" class="overlay-link">Projects</a>
+            <a href="#opensource-section" class="overlay-link">Open Source</a>
             <a href="#activity-section" class="overlay-link">Activity</a>
             <a href="#about-section" class="overlay-link">About</a>
             <a href="#contact-section" class="overlay-link">Contact</a>
@@ -1075,8 +1323,8 @@
             </div>
         </div>
     </div>
-    <script src="js/script.js?v=24"></script>
-    <script src="js/interactive.js?v=24"></script>
+    <script src="js/script.js?v=25"></script>
+    <script src="js/interactive.js?v=25"></script>
     <script>
         // Register Service Worker for offline support & always-on caching
         if ('serviceWorker' in navigator) {

@@ -14,6 +14,72 @@
 
     /* ─── Project data (single source of truth for filter, modal, skills) ── */
     const PROJECTS = {
+        'RAGBench': {
+            category: 'AI/ML', badge: 'AI/ML', icon: 'database-zap', accent: 'cyan',
+            github: 'https://github.com/sayaksatpathi/RAGBench',
+            tags: ['Python', 'FastAPI', 'RAG', 'Evaluation'],
+            stack: ['Python', 'FastAPI', 'SQLite', 'BM25', 'Embeddings', 'pytest', 'Git / GitHub'],
+            tagline: 'Retrieval-augmented generation you can measure',
+            problem: 'RAG systems are easy to demo and hard to trust: you rarely know whether a retrieval change made answers better or just different.',
+            solution: 'An adaptive RAG platform that compares BM25, dense and hybrid (Reciprocal Rank Fusion) retrieval, answers with validated citations, abstains when evidence is thin, and gates new configurations against a known-good baseline.',
+            architecture: 'Ingestion (normalise, dedup, versioned chunking) → SQLite store → BM25 / dense / hybrid RRF retrieval → grounded generation with citation checks → hardened FastAPI service and an evaluation CLI; 90 passing tests.',
+            learned: 'Evaluation comes first: an honest neutral result (routing tied the best fixed baseline) is worth more than a flattering one.'
+        },
+        'AI Trade Advisor': {
+            category: 'AI/ML', badge: 'AI/ML', icon: 'bot', accent: 'purple',
+            github: 'https://github.com/sayaksatpathi/ai-trader',
+            tags: ['Python', 'LLM Agents', 'Claude', 'Ollama'],
+            stack: ['Python', 'Claude', 'Ollama', 'Pandas', 'Yahoo Finance', 'Git / GitHub'],
+            tagline: 'A multi-agent LLM advisor with hard limits in code',
+            problem: 'A single LLM prompt gives confident trade ideas with no debate and no guard against risky sizing.',
+            solution: 'Specialised agents (analyst, bull and bear researchers, manager, trader, risk manager) argue each recommendation; deterministic code sets quantity and rejects anything that breaks the risk rules. It only recommends; it never places orders.',
+            architecture: 'Code pre-screen ranks ~50 large-caps → top picks go to the agent pipeline → code-enforced position and loss limits → every recommendation logged to a journal. Claude via CLI, local Ollama fallback.',
+            learned: 'Keep the LLM away from hard limits: let it reason, and let plain code enforce the rules that must never be broken.'
+        },
+        'AeroMinds': {
+            category: 'AI/ML', badge: 'AI/ML', icon: 'drone', accent: 'green',
+            github: 'https://github.com/sayaksatpathi/AeroMinds',
+            tags: ['PyTorch', 'YOLOv8', 'Streamlit', 'Docker'],
+            stack: ['Python', 'PyTorch', 'YOLOv8', 'CUDA', 'Streamlit', 'Docker', 'Git / GitHub'],
+            tagline: 'Aerial waste intelligence from drone footage (hackathon podium)',
+            problem: 'Illegal dumping sites are found late, by complaint, long after they have grown.',
+            solution: 'A fine-tuned YOLOv8 model detects dumping in drone footage, scores severity (HIGH/MED/LOW) from cluster and coverage analysis, and tracks each incident from DETECTED to ASSIGNED to CLEARED. 2nd Runner-Up at the ELCIA Next-Gen Hackathon (180+ teams).',
+            architecture: 'PyTorch + CUDA inference pipeline → severity scoring → Streamlit command center with an incident workflow, containerised with Docker for Hugging Face Spaces.',
+            learned: 'Turning a detector into an operational tool: the workflow around the model matters as much as the model.'
+        },
+        'Prahari': {
+            category: 'AI/ML', badge: 'AI/ML', icon: 'cctv', accent: 'blue',
+            github: 'https://github.com/sayaksatpathi/PRAHARi',
+            tags: ['Python', 'OpenCV', 'FastAPI', 'Edge AI'],
+            stack: ['Python', 'OpenCV', 'FastAPI', 'Object Detection', 'Tracking', 'ANPR', 'Git / GitHub'],
+            tagline: 'Edge AI video intelligence for existing CCTV (SIH 2026)',
+            problem: 'Border-post CCTV records everything but understands nothing, and networks drop out.',
+            solution: 'An edge-first layer adding detection, tracking and ANPR to existing cameras, running offline and syncing on reconnect. Ground-plane self-calibration lands within 0.4–3.2% of true mounting height; an alert governor cut a 90-second window from 1064 to 138 alerts while recording 81% of events.',
+            architecture: 'Per-camera capability profiling → detection + tracking + ANPR → rule doctrines (tripwire / pattern-of-life) → rationed alerting, with a deterministic replay harness for evaluation.',
+            learned: 'Operator attention is the scarce resource; measure what the camera can really see before trusting its alerts.'
+        },
+        'SAKSHYA': {
+            category: 'Security', badge: 'Security', icon: 'fingerprint', accent: 'purple',
+            github: 'https://github.com/sayaksatpathi/SAKSHYA',
+            tags: ['FastAPI', 'React', 'Forensics', 'Docker'],
+            stack: ['Python', 'FastAPI', 'React', 'Vite', 'FFprobe', 'Docker', 'Git / GitHub'],
+            tagline: 'Vendor-agnostic CCTV forensic evidence platform',
+            problem: 'Surveillance evidence arrives from many DVR/NVR vendors in incompatible formats, and its custody is hard to prove in court.',
+            solution: 'An offline-first pipeline: ingestion → AI triage → deleted-clip recovery → tamper-evident cryptographic custody → a certificate draft. AI features report UNAVAILABLE rather than fabricate results.',
+            architecture: 'FastAPI backend with JWT + role-based access, SHA-256 acquisition, AI engine, and a React + Vite investigator dashboard; Docker Compose, CI with 91 tests.',
+            learned: 'For evidence tools, honesty about what the system cannot do is a feature, not a weakness.'
+        },
+        'OpsForge': {
+            category: 'DevOps', badge: 'DevOps', icon: 'server-cog', accent: 'green',
+            github: 'https://github.com/sayaksatpathi/opsforge-platform',
+            tags: ['Kubernetes', 'Terraform', 'Prometheus', 'CI/CD'],
+            stack: ['Python', 'Kubernetes', 'Helm', 'Argo CD', 'Terraform', 'Prometheus', 'Grafana', 'OpenTelemetry', 'Docker'],
+            tagline: 'A cloud-native DevSecOps & SRE platform',
+            problem: 'Shipping a service safely means testing, securing, deploying and observing it, not just building it.',
+            solution: 'Push code and the platform tests, scans, signs, deploys via GitOps and observes it, with SLOs, burn-rate alerting, tracing and chaos experiments. k6 load test: 152 rps, p95 99 ms, 0% errors.',
+            architecture: 'Services on Postgres + Redis + Kafka → CI with checkov, trivy, syft SBOM, gitleaks and Cosign signing → Helm + Argo CD → Prometheus, Grafana, Loki and OTel; Terraform modules for AWS.',
+            learned: 'Saying exactly what is verified versus only designed keeps a platform project honest.'
+        },
         'CyberShield AI': {
             category: 'AI/ML', badge: 'AI/ML', image: 'images/projects/cybershield.png',
             live: 'https://rad-donut-a8e264.netlify.app/', github: 'https://github.com/sayaksatpathi/cybershield-ai-streamlit',
@@ -61,12 +127,12 @@
         'Sayak Traders': {
             category: 'Business', badge: 'Business', image: 'images/projects/sayaktraders.png',
             live: 'https://sayak-traders.vercel.app', github: 'https://github.com/sayaksatpathi/fmcg-distributor',
-            tags: ['JavaScript', 'Web', 'Business'],
-            stack: ['JavaScript', 'HTML', 'CSS', 'Vercel', 'Git / GitHub'],
-            tagline: 'A distributor-management system for an FMCG business',
-            problem: 'A local FMCG distributor needed a simple digital way to manage products, orders and reporting.',
-            solution: 'A distributor management system with an admin login covering inventory, orders and basic reporting.',
-            architecture: 'JavaScript web app with an authenticated admin area, deployed on Vercel.',
+            tags: ['Node.js', 'SQL', 'Supply Chain', 'Business'],
+            stack: ['JavaScript', 'Node.js', 'Express', 'SQLite', 'MongoDB', 'Docker', 'Vercel', 'Git / GitHub'],
+            tagline: 'A security-hardened ERP for FMCG distributors',
+            problem: 'Distributors track turnover but not profit, and lose money to stock-outs and unchecked retailer credit.',
+            solution: 'A control system for retailers, inventory, sales and credit: purchase orders, invoices, returns, low-stock and reorder-point alerts, gross profit by retailer (revenue − COGS), and PDF reports on sales, profit, inventory and credit.',
+            architecture: 'Node.js + Express REST API with two editions sharing one frontend: SQLite (self-hosted, full hardening) and MongoDB (serverless on Vercel); Docker Compose and CI with 46 security tests.',
             learned: 'Building for a real client’s day-to-day operations and keeping an admin tool practical rather than flashy.'
         },
         'Log-Guardian': {
@@ -104,7 +170,6 @@
         }
     };
     const ACCENT_HEX = { green: '#4ade80', purple: '#c084fc', cyan: '#22d3ee', blue: '#60a5fa' };
-
     /* ══════════════════ 1. CUSTOM CURSOR ══════════════════ */
     (function cursor() {
         const el = document.getElementById('cursor');
@@ -146,7 +211,7 @@
 
         const sections = [
             ['hero-section', 'Home'], ['skills-section', 'Skills'], ['education-section', 'Education'],
-            ['certifications-section', 'Certificates'], ['projects-section', 'Projects'],
+            ['certifications-section', 'Certificates'], ['projects-section', 'Projects'], ['opensource-section', 'Open Source'],
             ['activity-section', 'Activity'], ['about-section', 'About'], ['contact-section', 'Contact']
         ].filter(([id]) => document.getElementById(id));
 
@@ -283,7 +348,7 @@
         drawIcons();
 
         // filter bar
-        const catsOrder = ['All', 'AI/ML', 'Web', 'Security', 'FinTech', 'Business'];
+        const catsOrder = ['All', 'AI/ML', 'Web', 'Security', 'DevOps', 'FinTech', 'Business'];
         const counts = {};
         cards.forEach(c => { const k = c.dataset.ixCat; if (k) counts[k] = (counts[k] || 0) + 1; });
         const present = catsOrder.filter(c => c === 'All' || counts[c]);

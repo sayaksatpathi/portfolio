@@ -80,8 +80,25 @@ const dev = s => `https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/${s
 const skillCategories = [
     {
         title: 'Databases', icon: 'database', accent: 'purple', skills: [
+            { name: 'SQL' },
+            { name: 'PostgreSQL', icon: dev('postgresql/postgresql-original') },
             { name: 'MySQL', icon: dev('mysql/mysql-original') },
-            { name: 'MongoDB', icon: dev('mongodb/mongodb-original') }
+            { name: 'SQLite', icon: dev('sqlite/sqlite-original') },
+            { name: 'MongoDB', icon: dev('mongodb/mongodb-original') },
+            { name: 'Redis', icon: dev('redis/redis-original') }
+        ]
+    },
+    {
+        title: 'Generative AI & LLMs', icon: 'sparkles', accent: 'purple', skills: [
+            { name: 'RAG' },
+            { name: 'Embeddings' },
+            { name: 'Hybrid Retrieval' },
+            { name: 'LLM Agents' },
+            { name: 'Prompting' },
+            { name: 'RAG Evaluation' },
+            { name: 'Claude' },
+            { name: 'Ollama' },
+            { name: 'FastAPI', icon: dev('fastapi/fastapi-original') }
         ]
     },
     {
