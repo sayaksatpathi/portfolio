@@ -468,7 +468,7 @@
             { label: 'Copy email address', icon: 'copy', run: copyEmail },
             { label: 'Download Resume (CV)', icon: 'download', run: () => window.open('https://sayaksatpathi.netlify.app/Sayak_Satpathi_Resume.pdf', '_blank') },
             { label: 'Open GitHub', icon: 'github', run: () => window.open('https://github.com/sayaksatpathi', '_blank') },
-            { label: 'Open LinkedIn', icon: 'linkedin', run: () => window.open('https://www.linkedin.com/in/sayak-satpathi-34031b240', '_blank') },
+            { label: 'Open LinkedIn', icon: 'linkedin', run: () => window.open('https://www.linkedin.com/in/sayak-satpathi', '_blank') },
             { label: 'Jump to Terminal', icon: 'terminal', run: () => { const t = document.getElementById('ix-terminal'); if (t) { t.scrollIntoView({ behavior: 'smooth', block: 'center' }); const i = t.querySelector('.ix-term-input'); setTimeout(() => i && i.focus(), 500); } } }
         ];
         const back = document.createElement('div');
@@ -555,7 +555,7 @@
             skills: () => { print('<span class="ix-term-accent">Python • JS • React • PyTorch • OpenCV • Docker • AWS • Linux …</span>'); scrollTo('skills-section'); },
             about: () => { print('2nd-year B.Tech AI &amp; ML student at SMIT — full-stack developer, UI/UX enthusiast and open-source contributor.'); scrollTo('about-section'); },
             github: () => { print('<span class="ix-term-muted">opening github.com/sayaksatpathi…</span>'); window.open('https://github.com/sayaksatpathi', '_blank'); },
-            linkedin: () => { print('<span class="ix-term-muted">opening LinkedIn…</span>'); window.open('https://www.linkedin.com/in/sayak-satpathi-34031b240', '_blank'); },
+            linkedin: () => { print('<span class="ix-term-muted">opening LinkedIn…</span>'); window.open('https://www.linkedin.com/in/sayak-satpathi', '_blank'); },
             resume: () => { print('<span class="ix-term-muted">downloading CV…</span>'); window.open('https://sayaksatpathi.netlify.app/Sayak_Satpathi_Resume.pdf', '_blank'); },
             contact: () => print('email: <span class="ix-term-path">' + EMAIL + '</span>  — type <span class="ix-term-cmd">copy</span> to copy it'),
             copy: () => { copyEmail(); print('<span class="ix-term-muted">copied to clipboard ✓</span>'); },
