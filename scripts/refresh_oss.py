@@ -37,7 +37,8 @@ def card(i, merged):
 
 def render(page, merged, review):
     cards = "\n".join([card(i, True) for i in merged] + [card(i, False) for i in review])
-    page, n1 = re.subn(r"(<!-- oss:cards -->\n).*?(\s*<!-- /oss:cards -->)", lambda m: m.group(1) + cards + m.group(2), page, flags=re.S)
+    page, n1 = re.subn(r"<!-- oss:cards -->.*?<!-- /oss:cards -->",  # whole block replaced: same input, same output
+                       lambda m: "<!-- oss:cards -->\n" + cards.rstrip("\n") + "\n<!-- /oss:cards -->", page, flags=re.S)
     page, n2 = re.subn(r"<!-- oss:count -->.*?<!-- /oss:count -->",
                        f"<!-- oss:count -->( {len(merged)} MERGED &middot; {len(review)} IN REVIEW )<!-- /oss:count -->", page)
     page, n3 = re.subn(r"<!-- oss:line -->.*?<!-- /oss:line -->",
@@ -48,13 +49,13 @@ def render(page, merged, review):
 
 def main(path="index.html"):
     merged = sorted(search(f"author:{USER} is:pr is:merged -user:{USER}"), key=lambda i: i["closed_at"], reverse=True)
-    review = [i for i in search(f"author:{USER} is:pr is:open draft:false -user:{USER}")]
+    review = sorted(search(f"author:{USER} is:pr is:open draft:false -user:{USER}"), key=lambda i: i["created_at"], reverse=True)
     if not merged:
         sys.exit("GitHub returned no merged PRs: refusing to blank the section")
-    page = open(path, encoding="utf-8").read()
+    page = open(path, encoding="utf-8", newline="").read()
     new = render(page, merged, review)
     if new != page:
-        open(path, "w", encoding="utf-8").write(new)
+        open(path, "w", encoding="utf-8", newline="").write(new)
     print(f"{len(merged)} merged, {len(review)} in review, {'changed' if new != page else 'unchanged'}")
 
 
