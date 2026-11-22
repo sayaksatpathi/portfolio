@@ -519,7 +519,7 @@
                                             </div>
                                             <span class="text-xs text-gray-400 uppercase tracking-wide">2026</span>
                                         </div>
-                                        <p class="text-sm text-gray-300 leading-relaxed">&bull; 7 pull requests merged upstream and 6 in review at KServe and Kubeflow &mdash; bug fixes in ML-platform, MLOps and cloud tooling.</p>
+                                        <p class="text-sm text-gray-300 leading-relaxed">&bull; <!-- oss:line -->7 pull requests merged upstream and 6 in review<!-- /oss:line --> at KServe and Kubeflow &mdash; bug fixes in ML-platform, MLOps and cloud tooling.</p>
                                     </a>
                                 </div>
 
@@ -992,19 +992,12 @@
                             <div class="section-head grid lg:grid-cols-2 gap-6 lg:gap-8 items-center mb-12 lg:mb-16">
                                 <div class="reveal">
                                     <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter">OPEN SOURCE /</h2>
-                                    <p class="text-xs sm:text-sm text-gray-400 mt-2">( 7 MERGED &middot; 6 IN REVIEW )</p>
+                                    <p class="text-xs sm:text-sm text-gray-400 mt-2"><!-- oss:count -->( 7 MERGED &middot; 6 IN REVIEW )<!-- /oss:count --></p>
                                 </div>
                                 <p class="text-sm sm:text-base text-gray-300 max-w-md reveal" style="transition-delay: 150ms;">Bug fixes contributed upstream to ML-platform, MLOps and cloud projects &mdash; including MLflow, Ultralytics, Kubernetes, AWS cfn-lint, KServe and Kubeflow.</p>
                             </div>
                             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-                                <a href="https://github.com/mlflow/mlflow/pull/26807" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-5 transition-all duration-500">
-                                    <div class="flex items-center justify-between gap-3 mb-3">
-                                        <span class="text-sm font-bold text-white truncate">mlflow/mlflow</span>
-                                        <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-merge" class="w-3 h-3"></i> Merged</span>
-                                    </div>
-                                    <p class="text-sm text-gray-400 leading-relaxed">Fix format_prompt replacing placeholders that appear inside variable values <span class="text-gray-500">#26807</span></p>
-                                </a>
-
+<!-- oss:cards -->
                                 <a href="https://github.com/mlflow/mlflow/pull/27008" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-5 transition-all duration-500">
                                     <div class="flex items-center justify-between gap-3 mb-3">
                                         <span class="text-sm font-bold text-white truncate">mlflow/mlflow</span>
@@ -1013,12 +1006,20 @@
                                     <p class="text-sm text-gray-400 leading-relaxed">Fix model config loading to always use UTF-8 encoding <span class="text-gray-500">#27008</span></p>
                                 </a>
 
-                                <a href="https://github.com/ultralytics/ultralytics/pull/26701" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-5 transition-all duration-500">
+                                <a href="https://github.com/aws-cloudformation/cfn-lint/pull/4763" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-5 transition-all duration-500">
                                     <div class="flex items-center justify-between gap-3 mb-3">
-                                        <span class="text-sm font-bold text-white truncate">ultralytics/ultralytics</span>
+                                        <span class="text-sm font-bold text-white truncate">aws-cloudformation/cfn-lint</span>
                                         <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-merge" class="w-3 h-3"></i> Merged</span>
                                     </div>
-                                    <p class="text-sm text-gray-400 leading-relaxed">Skip torch.compile on CUDA when Triton is unavailable <span class="text-gray-500">#26701</span></p>
+                                    <p class="text-sm text-gray-400 leading-relaxed">fix: Validate --registry-schemas types against their schema again <span class="text-gray-500">#4763</span></p>
+                                </a>
+
+                                <a href="https://github.com/aws-cloudformation/cfn-lint/pull/4765" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">aws-cloudformation/cfn-lint</span>
+                                        <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-merge" class="w-3 h-3"></i> Merged</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">fix: Check the length of a template Description that mentions a dynamic reference <span class="text-gray-500">#4765</span></p>
                                 </a>
 
                                 <a href="https://github.com/kubernetes-client/python/pull/2745" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-5 transition-all duration-500">
@@ -1029,20 +1030,12 @@
                                     <p class="text-sm text-gray-400 leading-relaxed">Relax the certifi lower bound and stop Dependabot raising lower bounds <span class="text-gray-500">#2745</span></p>
                                 </a>
 
-                                <a href="https://github.com/aws-cloudformation/cfn-lint/pull/4765" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-5 transition-all duration-500">
+                                <a href="https://github.com/mlflow/mlflow/pull/26807" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-5 transition-all duration-500">
                                     <div class="flex items-center justify-between gap-3 mb-3">
-                                        <span class="text-sm font-bold text-white truncate">aws-cloudformation/cfn-lint</span>
+                                        <span class="text-sm font-bold text-white truncate">mlflow/mlflow</span>
                                         <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-merge" class="w-3 h-3"></i> Merged</span>
                                     </div>
-                                    <p class="text-sm text-gray-400 leading-relaxed">Check the length of a template Description that mentions a dynamic reference <span class="text-gray-500">#4765</span></p>
-                                </a>
-
-                                <a href="https://github.com/aws-cloudformation/cfn-lint/pull/4763" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-5 transition-all duration-500">
-                                    <div class="flex items-center justify-between gap-3 mb-3">
-                                        <span class="text-sm font-bold text-white truncate">aws-cloudformation/cfn-lint</span>
-                                        <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-merge" class="w-3 h-3"></i> Merged</span>
-                                    </div>
-                                    <p class="text-sm text-gray-400 leading-relaxed">Validate --registry-schemas types against their schema again <span class="text-gray-500">#4763</span></p>
+                                    <p class="text-sm text-gray-400 leading-relaxed">Fix `format_prompt` replacing placeholders that appear inside variable values <span class="text-gray-500">#26807</span></p>
                                 </a>
 
                                 <a href="https://github.com/cloud-custodian/cloud-custodian/pull/11215" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-5 transition-all duration-500">
@@ -1050,7 +1043,15 @@
                                         <span class="text-sm font-bold text-white truncate">cloud-custodian/cloud-custodian</span>
                                         <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-merge" class="w-3 h-3"></i> Merged</span>
                                     </div>
-                                    <p class="text-sm text-gray-400 leading-relaxed">Skip ROLLBACK_COMPLETE stacks in CloudFormation tag actions <span class="text-gray-500">#11215</span></p>
+                                    <p class="text-sm text-gray-400 leading-relaxed">aws - cfn - skip ROLLBACK_COMPLETE stacks in tag actions <span class="text-gray-500">#11215</span></p>
+                                </a>
+
+                                <a href="https://github.com/ultralytics/ultralytics/pull/26701" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">ultralytics/ultralytics</span>
+                                        <span class="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-merge" class="w-3 h-3"></i> Merged</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">Skip torch.compile on CUDA when Triton is unavailable <span class="text-gray-500">#26701</span></p>
                                 </a>
 
                                 <a href="https://github.com/kserve/kserve/pull/6521" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-gray-500 rounded-2xl p-5 transition-all duration-500">
@@ -1058,39 +1059,7 @@
                                         <span class="text-sm font-bold text-white truncate">kserve/kserve</span>
                                         <span class="bg-gray-600/40 text-gray-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-pull-request" class="w-3 h-3"></i> In review</span>
                                     </div>
-                                    <p class="text-sm text-gray-400 leading-relaxed">Honor response-level use_binary_outputs for requested outputs <span class="text-gray-500">#6521</span></p>
-                                </a>
-
-                                <a href="https://github.com/kserve/kserve/pull/6407" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-gray-500 rounded-2xl p-5 transition-all duration-500">
-                                    <div class="flex items-center justify-between gap-3 mb-3">
-                                        <span class="text-sm font-bold text-white truncate">kserve/kserve</span>
-                                        <span class="bg-gray-600/40 text-gray-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-pull-request" class="w-3 h-3"></i> In review</span>
-                                    </div>
-                                    <p class="text-sm text-gray-400 leading-relaxed">Read raw tensor data in InferRequest.as_dataframe() <span class="text-gray-500">#6407</span></p>
-                                </a>
-
-                                <a href="https://github.com/kserve/kserve/pull/6405" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-gray-500 rounded-2xl p-5 transition-all duration-500">
-                                    <div class="flex items-center justify-between gap-3 mb-3">
-                                        <span class="text-sm font-bold text-white truncate">kserve/kserve</span>
-                                        <span class="bg-gray-600/40 text-gray-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-pull-request" class="w-3 h-3"></i> In review</span>
-                                    </div>
-                                    <p class="text-sm text-gray-400 leading-relaxed">Make InferInput.as_string() work for REST and gRPC inputs <span class="text-gray-500">#6405</span></p>
-                                </a>
-
-                                <a href="https://github.com/kserve/kserve/pull/6414" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-gray-500 rounded-2xl p-5 transition-all duration-500">
-                                    <div class="flex items-center justify-between gap-3 mb-3">
-                                        <span class="text-sm font-bold text-white truncate">kserve/kserve</span>
-                                        <span class="bg-gray-600/40 text-gray-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-pull-request" class="w-3 h-3"></i> In review</span>
-                                    </div>
-                                    <p class="text-sm text-gray-400 leading-relaxed">Stop returning request headers from the v1 explain endpoint <span class="text-gray-500">#6414</span></p>
-                                </a>
-
-                                <a href="https://github.com/kubeflow/docs-agent/pull/283" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-gray-500 rounded-2xl p-5 transition-all duration-500">
-                                    <div class="flex items-center justify-between gap-3 mb-3">
-                                        <span class="text-sm font-bold text-white truncate">kubeflow/docs-agent</span>
-                                        <span class="bg-gray-600/40 text-gray-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-pull-request" class="w-3 h-3"></i> In review</span>
-                                    </div>
-                                    <p class="text-sm text-gray-400 leading-relaxed">Keep compressor budgets non-negative and within max_chars <span class="text-gray-500">#283</span></p>
+                                    <p class="text-sm text-gray-400 leading-relaxed">fix(python): honor response-level use_binary_outputs for requested outputs <span class="text-gray-500">#6521</span></p>
                                 </a>
 
                                 <a href="https://github.com/kubeflow/docs-agent/pull/285" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-gray-500 rounded-2xl p-5 transition-all duration-500">
@@ -1098,8 +1067,42 @@
                                         <span class="text-sm font-bold text-white truncate">kubeflow/docs-agent</span>
                                         <span class="bg-gray-600/40 text-gray-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-pull-request" class="w-3 h-3"></i> In review</span>
                                     </div>
-                                    <p class="text-sm text-gray-400 leading-relaxed">Don&#x27;t duplicate the first node&#x27;s decorator in the module header <span class="text-gray-500">#285</span></p>
+                                    <p class="text-sm text-gray-400 leading-relaxed">fix(pipelines): don&#x27;t duplicate the first node&#x27;s decorator in the module header <span class="text-gray-500">#285</span></p>
                                 </a>
+
+                                <a href="https://github.com/kubeflow/docs-agent/pull/283" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-gray-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">kubeflow/docs-agent</span>
+                                        <span class="bg-gray-600/40 text-gray-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-pull-request" class="w-3 h-3"></i> In review</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">fix(mcp): keep compressor budgets non-negative and within max_chars <span class="text-gray-500">#283</span></p>
+                                </a>
+
+                                <a href="https://github.com/kserve/kserve/pull/6414" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-gray-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">kserve/kserve</span>
+                                        <span class="bg-gray-600/40 text-gray-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-pull-request" class="w-3 h-3"></i> In review</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">fix(python): stop returning request headers from the v1 explain endpoint <span class="text-gray-500">#6414</span></p>
+                                </a>
+
+                                <a href="https://github.com/kserve/kserve/pull/6407" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-gray-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">kserve/kserve</span>
+                                        <span class="bg-gray-600/40 text-gray-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-pull-request" class="w-3 h-3"></i> In review</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">fix(python): read raw tensor data in InferRequest.as_dataframe() <span class="text-gray-500">#6407</span></p>
+                                </a>
+
+                                <a href="https://github.com/kserve/kserve/pull/6405" target="_blank" rel="noopener noreferrer" class="reveal block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-gray-500 rounded-2xl p-5 transition-all duration-500">
+                                    <div class="flex items-center justify-between gap-3 mb-3">
+                                        <span class="text-sm font-bold text-white truncate">kserve/kserve</span>
+                                        <span class="bg-gray-600/40 text-gray-300 px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="git-pull-request" class="w-3 h-3"></i> In review</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 leading-relaxed">fix(python): make InferInput.as_string() work for REST and gRPC inputs <span class="text-gray-500">#6405</span></p>
+                                </a>
+
+<!-- /oss:cards -->
                             </div>
                             <div class="text-center mt-12 reveal">
                                 <a href="https://github.com/pulls?q=is%3Apr+author%3Asayaksatpathi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg text-sm transition-colors duration-300"><i data-lucide="git-pull-request" class="w-4 h-4"></i> All pull requests</a>
